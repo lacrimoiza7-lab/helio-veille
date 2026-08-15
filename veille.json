@@ -1,12 +1,14 @@
 {
-  "genere_le": "2026-08-15T13:00:00Z",
+  "genere_le": "2026-08-15T13:13:00Z",
   "rien_a_signaler": true,
   "sources_consultees": [
     "https://gcn.nasa.gov/circulars",
+    "https://gcn.gsfc.nasa.gov/",
     "https://www.astronomerstelegram.org/",
     "https://www.wis-tns.org/",
-    "https://www.swift.ac.uk/"
+    "https://www.swift.ac.uk/",
+    "https://heasarc.gsfc.nasa.gov/"
   ],
-  "notes": "Aucune de ces quatre sources n'a pu être consultée directement : gcn.nasa.gov, astronomerstelegram.org, wis-tns.org et swift.ac.uk ont chacune renvoyé une erreur de blocage réseau (EGRESS_BLOCKED, politique de sortie du proxy de l'environnement), pas une panne de leur côté. Des recherches web de repli (plusieurs requêtes ciblant des circulaires GCN et désignations GRB/AT du 13 au 15 août 2026) n'ont fait remonter aucun événement vérifiable de cette fenêtre de 48h avec une page source précise et datée — seulement des circulaires plus anciennes (juillet 2026 et avant). Faute d'accès direct aux sources et faute de tout résultat vérifiable pour cette période, aucun événement n'est rapporté ici ; ceci ne doit pas être lu comme une confirmation qu'il ne s'est rien passé dans le ciel, mais comme l'impossibilité de vérifier quoi que ce soit aujourd'hui.",
+  "notes": "Aucune des sources primaires n'a pu être consultée directement aujourd'hui : gcn.nasa.gov, gcn.gsfc.nasa.gov, astronomerstelegram.org, wis-tns.org, swift.ac.uk et heasarc.gsfc.nasa.gov ont chacune renvoyé une erreur EGRESS_BLOCKED (politique de sortie réseau du proxy de l'environnement), pas une panne côté serveur. Des recherches web de repli ciblant des circulaires GCN et désignations GRB/AT sur la fenêtre du 13 au 15 août 2026 n'ont fait remonter aucun événement vérifiable de cette période avec une page source précise et datable — uniquement des circulaires plus anciennes. Faute d'accès direct aux sources et faute de résultat vérifiable pour cette fenêtre de 48h, aucun événement n'est rapporté ; ceci ne signifie pas qu'il ne s'est rien passé dans le ciel, seulement qu'aucune vérification n'a été possible aujourd'hui.",
   "evenements": []
 }
