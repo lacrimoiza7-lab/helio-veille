@@ -1,14 +1,13 @@
 {
-  "genere_le": "2026-08-15T13:13:00Z",
+  "genere_le": "2026-08-16T13:10:00Z",
   "rien_a_signaler": true,
   "sources_consultees": [
     "https://gcn.nasa.gov/circulars",
-    "https://gcn.gsfc.nasa.gov/",
+    "https://gcn.gsfc.nasa.gov/gcn3_circulars.html",
     "https://www.astronomerstelegram.org/",
     "https://www.wis-tns.org/",
-    "https://www.swift.ac.uk/",
-    "https://heasarc.gsfc.nasa.gov/"
+    "https://www.swift.ac.uk/"
   ],
-  "notes": "Aucune des sources primaires n'a pu être consultée directement aujourd'hui : gcn.nasa.gov, gcn.gsfc.nasa.gov, astronomerstelegram.org, wis-tns.org, swift.ac.uk et heasarc.gsfc.nasa.gov ont chacune renvoyé une erreur EGRESS_BLOCKED (politique de sortie réseau du proxy de l'environnement), pas une panne côté serveur. Des recherches web de repli ciblant des circulaires GCN et désignations GRB/AT sur la fenêtre du 13 au 15 août 2026 n'ont fait remonter aucun événement vérifiable de cette période avec une page source précise et datable — uniquement des circulaires plus anciennes. Faute d'accès direct aux sources et faute de résultat vérifiable pour cette fenêtre de 48h, aucun événement n'est rapporté ; ceci ne signifie pas qu'il ne s'est rien passé dans le ciel, seulement qu'aucune vérification n'a été possible aujourd'hui.",
+  "notes": "Comme lors du relevé précédent, aucune des sources primaires n'a pu être consultée directement : gcn.nasa.gov, gcn.gsfc.nasa.gov, astronomerstelegram.org, wis-tns.org et swift.ac.uk ont toutes renvoyé une erreur EGRESS_BLOCKED via WebFetch, confirmée par un test curl direct (tunnel CONNECT refusé, code 403) — il s'agit d'une restriction réseau de cet environnement, pas d'une panne côté serveur. Des recherches web de repli ciblant des désignations GRB/AT/SN et circulaires GCN datées du 14 au 16 août 2026 n'ont fait remonter aucun événement vérifiable de cette fenêtre avec une page source précise et datable. Aucun événement n'est donc rapporté ; cela ne signifie pas qu'il ne s'est rien passé dans le ciel, seulement qu'aucune vérification directe des sources n'a été possible aujourd'hui.",
   "evenements": []
 }
