@@ -1,0 +1,675 @@
+<meta charset="utf-8">
+<title>Ti-Shaw et l'Étoile perdue d'Hélio</title>
+<style>
+  html,body{margin:0;height:100%;background:#0b0d16;color:#cbd3e0;
+    font-family:"Trebuchet MS",system-ui,sans-serif;overflow:hidden}
+  #wrap{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+  #game{image-rendering:pixelated;image-rendering:crisp-edges;
+    width:min(96vw,768px);border:3px solid #2a3350;border-radius:6px;
+    box-shadow:0 0 0 3px #10131f,0 12px 40px rgba(0,0,0,.6);background:#000;touch-action:none}
+  #tips{font-size:13px;opacity:.75;text-align:center;max-width:768px;line-height:1.5}
+  #tips b{color:#ff8a2a}
+  kbd{background:#20263c;border:1px solid #39406a;border-bottom-width:2px;border-radius:4px;
+    padding:1px 6px;font-size:12px;color:#dfe6f5}
+</style>
+<div id="wrap">
+  <canvas id="game" width="256" height="208"></canvas>
+  <div id="tips">
+    <b>Ti-Shaw</b> se déplace avec <kbd>←↑↓→</kbd> ou <kbd>WASD</kbd> ·
+    épée <kbd>Z</kbd>/<kbd>Espace</kbd> · <kbd>Entrée</kbd> jouer/recommencer ·
+    <kbd>P</kbd> pause · <kbd>M</kbd> son<br>
+    <b>Mister BigNip</b> le poisson orange te suit et crache des bulles sur les ennemis !
+  </div>
+</div>
+<script>
+"use strict";
+/* =====================================================================
+   Ti-Shaw et l'Étoile perdue d'Hélio
+   Aventure vue de dessus, 100% Canvas — pensée pour tourner sur un
+   Celeron 4 Go : résolution interne minuscule, sprites dessinés au code
+   (aucune image à charger), fonds pré-rendus par écran, boucle à pas fixe.
+   ===================================================================== */
+
+const cv = document.getElementById('game');
+const g  = cv.getContext('2d');
+g.imageSmoothingEnabled = false;
+
+// ---- dimensions ----
+const TILE = 16, COLS = 16, ROWS = 11;
+const HUD_H = 32;                    // bandeau du haut
+const VIEW_W = COLS * TILE;          // 256
+const VIEW_H = ROWS * TILE;          // 176
+// canvas = 256 x 208 (HUD + vue)
+
+// ---- petit helper de pixels ----
+function px(x,y,w,h,c){ g.fillStyle=c; g.fillRect(x|0,y|0,w,h); }
+
+/* =====================================================================
+   1) LES CARTES
+   ===================================================================== */
+// Légende des tuiles :
+//  . herbe / sol       T arbre        R rocher       W eau
+//  # mur de donjon     C caverne (entrée)  D porte verrouillée
+//  , sentier / sable   B pont
+const OVER_EXITS = [
+  {n:0,e:1,s:1,w:0},{n:0,e:1,s:1,w:1},{n:0,e:0,s:1,w:1}, // 0 1 2
+  {n:1,e:1,s:1,w:0},{n:1,e:1,s:1,w:1},{n:1,e:0,s:1,w:1}, // 3 4 5
+  {n:1,e:1,s:0,w:0},{n:1,e:1,s:0,w:1},{n:1,e:0,s:0,w:1}  // 6 7 8
+];
+// décor posé par-dessus la bordure : [x,y,char]
+const OVER_DECOR = {
+  0:[[3,3,'T'],[4,3,'T'],[3,4,'T'],[11,7,'R'],[12,7,'R']],
+  1:[[7,5,'C'],[6,4,'R'],[8,4,'R'],[6,6,'R'],[8,6,'R'],[7,3,',']], // caverne
+  2:[[4,3,'W'],[5,3,'W'],[4,4,'W'],[5,4,'W'],[11,7,'T'],[12,7,'T']],
+  3:[[5,5,'R'],[6,5,'R'],[9,3,'T'],[10,3,'T'],[9,7,'T']],
+  4:[[3,3,'T'],[12,3,'T'],[3,7,'T'],[12,7,'T'],[7,5,','],[8,5,',']], // départ
+  5:[[8,5,'R'],[9,5,'R'],[8,6,'R'],[9,6,'R'],[4,3,'T'],[4,7,'T']],   // clé gardée
+  6:[[4,4,'W'],[5,4,'W'],[6,4,'W'],[4,5,'W'],[5,5,'B'],[6,5,'W'],[10,7,'T']],
+  7:[[3,3,'T'],[12,3,'T'],[7,7,'R'],[8,7,'R']],
+  8:[[10,4,'T'],[11,4,'T'],[10,5,'T'],[4,7,'R'],[5,7,'R']]
+};
+function buildBorderScreen(ex){
+  const grid=[];
+  for(let y=0;y<ROWS;y++){
+    let row='';
+    for(let x=0;x<COLS;x++){
+      let ch='.';
+      const border = x===0||x===COLS-1||y===0||y===ROWS-1;
+      if(border){
+        ch='T';
+        const nGap = ex.n && x>=6 && x<=9, sGap = ex.s && x>=6 && x<=9;
+        const wGap = ex.w && y>=4 && y<=6, eGap = ex.e && y>=4 && y<=6;
+        if(y===0 && nGap) ch='.';
+        if(y===ROWS-1 && sGap) ch='.';
+        if(x===0 && wGap) ch='.';
+        if(x===COLS-1 && eGap) ch='.';
+      }
+      row+=ch;
+    }
+    grid.push(row);
+  }
+  return grid;
+}
+function applyDecor(grid,decor){
+  if(!decor) return grid;
+  const rows = grid.map(r=>r.split(''));
+  for(const [x,y,ch] of decor) rows[y][x]=ch;
+  return rows.map(r=>r.join(''));
+}
+function buildOverworld(){
+  const scr=[];
+  for(let i=0;i<9;i++) scr.push(applyDecor(buildBorderScreen(OVER_EXITS[i]),OVER_DECOR[i]));
+  return scr;
+}
+// Donjon : dessiné à la main
+const DUNGEON = [
+  // d0 : salle d'entrée. Porte 'D' en haut, escalier 'C' en bas.
+  [
+    "#######D########",
+    "#..............#",
+    "#..R........R..#",
+    "#..............#",
+    "#......##......#",
+    "#......##......#",
+    "#......##......#",
+    "#..R........R..#",
+    "#..............#",
+    "#......CC......#",
+    "################"
+  ],
+  // d1 : salle du boss. Sortie 'C' en bas.
+  [
+    "################",
+    "#..............#",
+    "#..............#",
+    "#..R........R..#",
+    "#..............#",
+    "#..............#",
+    "#..............#",
+    "#..............#",
+    "#..R........R..#",
+    "#......CC......#",
+    "################"
+  ]
+];
+
+/* =====================================================================
+   2) LES ENTITÉS (par écran) : ennemis, gemmes, clé, boss, étoile
+   ===================================================================== */
+const SPAWN = {
+  OVER: {
+    3:{enemies:[[4,3],[11,7]], gems:[[7,5]]},
+    4:{gems:[[4,5],[11,5]]},
+    5:{enemies:[[6,4],[11,4],[9,8]], gems:[[3,8]], key:[7,3]}, // la clé !
+    6:{enemies:[[10,4]], gems:[[11,3]]},
+    7:{enemies:[[5,4],[11,4],[7,3]], gems:[[7,8]]},
+    8:{enemies:[[8,3],[6,6]], gems:[[12,8]]},
+    2:{enemies:[[8,7]], gems:[[8,3]]},
+    0:{enemies:[[8,7]], gems:[[8,8]]}
+  },
+  DUN: {
+    0:{enemies:[[3,3],[12,3],[3,7],[12,7]], gems:[[7,5]]},
+    1:{boss:[8,4], gems:[]}
+  }
+};
+// Téléporteurs : "MAP,screen,tx,ty" -> {map,screen,px,py}
+const WARPS = {
+  "OVER,1,7,5": {map:"DUN", screen:0, px:8*TILE, py:8*TILE},   // caverne -> donjon
+  "DUN,0,8,10":{map:"OVER",screen:1, px:7*TILE, py:6*TILE},    // escalier -> extérieur
+  "DUN,0,7,0": {map:"DUN", screen:1, px:8*TILE, py:8*TILE},    // porte -> boss (clé requise)
+  "DUN,1,7,10":{map:"DUN", screen:0, px:7*TILE, py:2*TILE}     // sortie boss -> d0
+};
+const NEED_KEY = new Set(["DUN,0,7,0"]); // ce warp coûte une clé
+
+function tileAt(map,screen,tx,ty){
+  const grid = map==="OVER"?OVER[screen]:DUNGEON[screen];
+  if(ty<0||ty>=ROWS||tx<0||tx>=COLS) return '#';
+  return grid[ty][tx];
+}
+function isSolid(ch){ return ch==='T'||ch==='R'||ch==='#'||ch==='W'; }
+
+/* =====================================================================
+   3) ÉTAT DU JEU
+   ===================================================================== */
+const OVER = buildOverworld();
+let S; // état courant
+
+function freshEntities(){
+  const mk = src=>{
+    const out={};
+    for(const k in src){
+      const s=src[k]; out[k]={
+        enemies:(s.enemies||[]).map(([x,y])=>({x:x*TILE,y:y*TILE,dir:0,t:0,hp:2,alive:true,hurt:0})),
+        gems:(s.gems||[]).map(([x,y])=>({x:x*TILE+4,y:y*TILE+4,got:false})),
+        key: s.key?{x:s.key[0]*TILE+4,y:s.key[1]*TILE+2,got:false}:null,
+        boss: s.boss?{x:s.boss[0]*TILE,y:s.boss[1]*TILE,hp:8,alive:true,dir:2,t:0,hurt:0,shoot:0}:null,
+        star:null
+      };
+    }
+    return out;
+  };
+  return {OVER:mk(SPAWN.OVER), DUN:mk(SPAWN.DUN)};
+}
+function resetGame(){
+  S = {
+    mode:"title",           // title | play | pause | dead | win
+    map:"OVER", screen:4,
+    px:7*TILE, py:5*TILE,   // Ti-Shaw
+    dir:2, step:0, walkT:0,
+    attack:0, hearts:6, maxHearts:6, // demi-cœurs (6 = 3 cœurs)
+    inv:0,                  // invulnérabilité
+    gems:0, keys:0,
+    ent: freshEntities(),
+    trail:[],               // pour BigNip
+    fish:{x:7*TILE-14,y:5*TILE,phase:0,shoot:0},
+    bubbles:[],             // projectiles de BigNip
+    msg:"", msgT:0,
+    bossDown:false
+  };
+}
+resetGame();
+
+function curEnt(){ return S.ent[S.map][S.screen] || {enemies:[],gems:[],key:null,boss:null,star:null}; }
+function say(t){ S.msg=t; S.msgT=150; }
+
+/* =====================================================================
+   4) ENTRÉES CLAVIER + TACTILE
+   ===================================================================== */
+const keys={};
+addEventListener('keydown',e=>{
+  const k=e.key.toLowerCase();
+  if(['arrowup','arrowdown','arrowleft','arrowright',' '].includes(k)||k===' ') e.preventDefault();
+  keys[k]=true;
+  if(k==='enter'){ if(S.mode==='title'||S.mode==='dead'||S.mode==='win'){ resetGame(); S.mode='play'; } }
+  if(k==='p'&&S.mode==='play') S.mode='pause'; else if(k==='p'&&S.mode==='pause') S.mode='play';
+  if(k==='m') sound.on=!sound.on;
+  if((k==='z'||k===' '||k==='j')&&S.mode==='play') doAttack();
+},{passive:false});
+addEventListener('keyup',e=>{ keys[e.key.toLowerCase()]=false; });
+
+function down(...ks){ return ks.some(k=>keys[k]); }
+
+/* =====================================================================
+   5) SON (WebAudio, minuscules bips — aucun fichier)
+   ===================================================================== */
+const sound={ctx:null,on:true,
+  blip(freq,dur,type,vol){
+    if(!this.on) return;
+    try{
+      this.ctx = this.ctx||new (window.AudioContext||window.webkitAudioContext)();
+      const o=this.ctx.createOscillator(), a=this.ctx.createGain();
+      o.type=type||'square'; o.frequency.value=freq;
+      a.gain.value=vol||0.05;
+      o.connect(a).connect(this.ctx.destination);
+      const t=this.ctx.currentTime; o.start(t);
+      a.gain.exponentialRampToValueAtTime(0.0001,t+dur);
+      o.stop(t+dur);
+    }catch(e){}
+  }
+};
+const sfx={
+  sword(){sound.blip(520,0.09,'square',.04);},
+  hit(){sound.blip(160,0.12,'sawtooth',.05);},
+  hurt(){sound.blip(110,0.18,'triangle',.06);},
+  gem(){sound.blip(880,0.08,'square',.04); setTimeout(()=>sound.blip(1180,0.08,'square',.04),60);},
+  key(){sound.blip(700,0.1,'square',.05); setTimeout(()=>sound.blip(1046,0.14,'square',.05),90);},
+  door(){sound.blip(300,0.2,'sawtooth',.05);},
+  bubble(){sound.blip(660,0.06,'sine',.03);},
+  win(){[523,659,784,1046].forEach((f,i)=>setTimeout(()=>sound.blip(f,0.18,'square',.05),i*140));}
+};
+
+/* =====================================================================
+   6) LOGIQUE
+   ===================================================================== */
+function doAttack(){
+  if(S.attack>0) return;
+  S.attack=14; sfx.sword();
+}
+// boîte de l'épée pendant l'attaque
+function swordBox(){
+  if(S.attack<=0) return null;
+  const cx=S.px+7, cy=S.py+8, r=13;
+  if(S.dir===0) return {x:cx-4,y:S.py-r+2,w:8,h:r};      // haut
+  if(S.dir===2) return {x:cx-4,y:S.py+12,w:8,h:r};       // bas
+  if(S.dir===3) return {x:S.px-r+2,y:cy-4,w:r,h:8};      // gauche
+  return {x:S.px+12,y:cy-4,w:r,h:8};                     // droite
+}
+function rectHit(a,b){ return a.x<b.x+b.w&&a.x+a.w>b.x&&a.y<b.y+b.h&&a.y+a.h>b.y; }
+
+function solidAtPixel(x,y){
+  const tx=(x/TILE)|0, ty=(y/TILE)|0;
+  const ch=tileAt(S.map,S.screen,tx,ty);
+  if(ch==='B') return false;               // pont franchissable
+  if(ch==='D') return S.keys<=0;           // porte : bloque sans clé
+  return isSolid(ch);
+}
+// collision d'une boîte 12x12 aux 4 coins
+function canMove(nx,ny){
+  const pad=2, w=12, h=12;
+  const xs=[nx+pad, nx+pad+w-1], ys=[ny+pad+3, ny+pad+h-1]; // pieds surtout
+  for(const X of xs) for(const Y of ys) if(solidAtPixel(X,Y)) return false;
+  return true;
+}
+
+function tryWarp(){
+  const cx=((S.px+7)/TILE)|0, cy=((S.py+8)/TILE)|0;
+  const ch=tileAt(S.map,S.screen,cx,cy);
+  if(ch!=='C'&&ch!=='D') return;
+  const key=`${S.map},${S.screen},${cx},${cy}`;
+  const w=WARPS[key]; if(!w) return;
+  if(NEED_KEY.has(key)){
+    if(S.keys<=0){ say("Verrouillé — il faut une clé !");
+      // repousse le joueur pour ne pas coller à la porte
+      S.py+=6; return; }
+    S.keys--; sfx.door(); say("La porte s'ouvre…");
+  }
+  S.map=w.map; S.screen=w.screen; S.px=w.px; S.py=w.py;
+  S.trail=[]; S.fish.x=S.px-14; S.fish.y=S.py; S.bubbles=[];
+}
+
+function edgeTransition(){
+  // bord d'écran (extérieur seulement, le donjon est fermé)
+  if(S.map!=="OVER") return;
+  const col=S.screen%3, row=(S.screen/3)|0;
+  let ns=S.screen;
+  if(S.px<-2 && col>0){ ns=S.screen-1; S.px=VIEW_W-16; }
+  else if(S.px>VIEW_W-12 && col<2){ ns=S.screen+1; S.px=2; }
+  else if(S.py<-2 && row>0){ ns=S.screen-3; S.py=VIEW_H-16; }
+  else if(S.py>VIEW_H-12 && row<2){ ns=S.screen+3; S.py=2; }
+  else { // rebord fermé : on borne
+    if(S.px<0)S.px=0; if(S.px>VIEW_W-14)S.px=VIEW_W-14;
+    if(S.py<0)S.py=0; if(S.py>VIEW_H-15)S.py=VIEW_H-15;
+    return;
+  }
+  S.screen=ns; S.trail=[]; S.fish.x=S.px-14; S.fish.y=S.py; S.bubbles=[];
+}
+
+function damagePlayer(n){
+  if(S.inv>0) return;
+  S.hearts-=n; S.inv=70; sfx.hurt();
+  if(S.hearts<=0){ S.hearts=0; S.mode='dead'; }
+}
+
+function update(){
+  if(S.mode!=='play') return;
+  const e=curEnt();
+
+  // --- déplacement Ti-Shaw ---
+  let vx=0, vy=0, sp=1.4;
+  if(down('arrowleft','a')){ vx=-sp; S.dir=3; }
+  else if(down('arrowright','d')){ vx=sp; S.dir=1; }
+  if(down('arrowup','w')){ vy=-sp; S.dir=0; }
+  else if(down('arrowdown','s')){ vy=sp; S.dir=2; }
+  if(vx&&vy){ vx*=0.72; vy*=0.72; }        // diagonale normalisée
+  if(S.attack>8){ vx*=0.35; vy*=0.35; }    // ralenti pendant le coup
+
+  if(vx&&canMove(S.px+vx,S.py)) S.px+=vx;
+  if(vy&&canMove(S.px,S.py+vy)) S.py+=vy;
+  const moving=(vx||vy);
+  if(moving){ S.walkT++; if(S.walkT%8===0) S.step^=1; } else S.step=0;
+
+  edgeTransition();
+  tryWarp();
+
+  if(S.attack>0) S.attack--;
+  if(S.inv>0) S.inv--;
+  if(S.msgT>0) S.msgT--; else S.msg="";
+
+  // --- BigNip suit Ti-Shaw ---
+  S.trail.push({x:S.px,y:S.py});
+  if(S.trail.length>26) S.trail.shift();
+  const target=S.trail[0]||{x:S.px,y:S.py};
+  S.fish.x += (target.x-14 - S.fish.x)*0.18;
+  S.fish.y += (target.y-2  - S.fish.y)*0.18;
+  S.fish.phase+=0.14;
+  // BigNip crache une bulle sur l'ennemi le plus proche
+  if(S.fish.shoot>0) S.fish.shoot--;
+  if(S.fish.shoot===0){
+    let best=null,bd=70*70;
+    for(const en of e.enemies){ if(!en.alive)continue;
+      const dx=en.x-S.fish.x, dy=en.y-S.fish.y, d=dx*dx+dy*dy;
+      if(d<bd){bd=d;best=en;} }
+    if(e.boss&&e.boss.alive){ const dx=e.boss.x-S.fish.x,dy=e.boss.y-S.fish.y,d=dx*dx+dy*dy;
+      if(d<120*120&&d<bd){bd=d;best=e.boss;} }
+    if(best){
+      const dx=best.x-S.fish.x, dy=best.y-S.fish.y, m=Math.hypot(dx,dy)||1;
+      S.bubbles.push({x:S.fish.x+8,y:S.fish.y+4,vx:dx/m*2.4,vy:dy/m*2.4,life:70});
+      S.fish.shoot=55; sfx.bubble();
+    }
+  }
+  // maj bulles
+  for(const b of S.bubbles){ b.x+=b.vx; b.y+=b.vy; b.life--;
+    if(solidAtPixel(b.x,b.y)) b.life=0;
+    // touche un ennemi
+    for(const en of e.enemies){ if(en.alive&&Math.hypot(en.x+7-b.x,en.y+7-b.y)<9){ en.hp--; en.hurt=10; b.life=0; sfx.hit(); if(en.hp<=0)killEnemy(en,e);} }
+    if(e.boss&&e.boss.alive&&Math.hypot(e.boss.x+11-b.x,e.boss.y+11-b.y)<15){ e.boss.hp--; e.boss.hurt=8; b.life=0; sfx.hit(); if(e.boss.hp<=0)killBoss(e); }
+  }
+  S.bubbles=S.bubbles.filter(b=>b.life>0);
+
+  // --- ennemis ---
+  const sw=swordBox();
+  for(const en of e.enemies){
+    if(!en.alive) continue;
+    en.t--; if(en.t<=0){ en.dir=(Math.random()*4)|0; en.t=40+((Math.random()*50)|0); }
+    if(en.hurt>0) en.hurt--;
+    const es=0.6, mv=[[0,-es],[es,0],[0,es],[-es,0]][en.dir];
+    const nx=en.x+mv[0], ny=en.y+mv[1];
+    if(!solidAtPixel(nx+3,ny+11)&&!solidAtPixel(nx+11,ny+11)&&nx>2&&nx<VIEW_W-14&&ny>2&&ny<VIEW_H-14){ en.x=nx; en.y=ny; }
+    else en.t=0;
+    // épée
+    if(sw&&rectHit(sw,{x:en.x+2,y:en.y+2,w:12,h:12})){ en.hp--; en.hurt=10; sfx.hit();
+      en.x+=[0,4,0,-4][S.dir]; en.y+=[-4,0,4,0][S.dir]; if(en.hp<=0)killEnemy(en,e); }
+    // contact joueur
+    if(Math.hypot(en.x+7-(S.px+7),en.y+7-(S.py+8))<11) damagePlayer(1);
+  }
+
+  // --- boss ---
+  if(e.boss&&e.boss.alive){
+    const bo=e.boss;
+    bo.t--; if(bo.t<=0){ bo.dir=(Math.random()*4)|0; bo.t=30+((Math.random()*40)|0); }
+    if(bo.hurt>0) bo.hurt--;
+    const bs=0.8, mv=[[0,-bs],[bs,0],[0,bs],[-bs,0]][bo.dir];
+    const nx=bo.x+mv[0], ny=bo.y+mv[1];
+    if(nx>2&&nx<VIEW_W-24&&ny>2&&ny<VIEW_H-24){ bo.x=nx; bo.y=ny; } else bo.t=0;
+    // le boss tire
+    bo.shoot--; if(bo.shoot<=0){ bo.shoot=90;
+      const dx=(S.px)-bo.x, dy=(S.py)-bo.y, m=Math.hypot(dx,dy)||1;
+      S.bubbles.push({x:bo.x+11,y:bo.y+11,vx:dx/m*1.6+0,vy:dy/m*1.6,life:120,foe:true}); }
+    if(sw&&rectHit(sw,{x:bo.x+2,y:bo.y+2,w:20,h:20})){ bo.hp--; bo.hurt=8; sfx.hit();
+      bo.x+=[0,5,0,-5][S.dir]; bo.y+=[-5,0,5,0][S.dir]; if(bo.hp<=0)killBoss(e); }
+    if(Math.hypot(bo.x+11-(S.px+7),bo.y+11-(S.py+8))<16) damagePlayer(1);
+  }
+  // projectiles du boss touchant le joueur
+  for(const b of S.bubbles){ if(b.foe&&Math.hypot(b.x-(S.px+7),b.y-(S.py+8))<9){ b.life=0; damagePlayer(1);} }
+
+  // --- ramassage gemmes / clé ---
+  for(const gm of e.gems){ if(gm.got)continue;
+    if(Math.hypot(gm.x-(S.px+7),gm.y-(S.py+8))<11){ gm.got=true; S.gems++; sfx.gem(); } }
+  if(e.key&&!e.key.got&&Math.hypot(e.key.x-(S.px+7),e.key.y-(S.py+8))<12){
+    e.key.got=true; S.keys++; sfx.key(); say("Une clé ! (pour la porte du donjon)"); }
+
+  // --- étoile finale ---
+  if(e.star){
+    e.star.phase+=0.1;
+    if(Math.hypot(e.star.x-(S.px+7),e.star.y-(S.py+8))<12){ S.mode='win'; sfx.win(); }
+  }
+}
+function killEnemy(en,e){
+  en.alive=false;
+  if(Math.random()<0.6) e.gems.push({x:en.x+4,y:en.y+4,got:false});
+}
+function killBoss(e){
+  e.boss.alive=false; S.bossDown=true; sfx.win();
+  e.star={x:8*TILE+3,y:5*TILE,phase:0};
+  say("L'Étoile d'Hélio apparaît !");
+}
+
+/* =====================================================================
+   7) RENDU — fonds pré-calculés par écran
+   ===================================================================== */
+const bgCache={};
+function bgKey(){ return S.map+"_"+S.screen; }
+function buildBg(){
+  const key=bgKey();
+  if(bgCache[key]) return bgCache[key];
+  const c=document.createElement('canvas'); c.width=VIEW_W; c.height=VIEW_H;
+  const cx=c.getContext('2d'); cx.imageSmoothingEnabled=false;
+  const grid = S.map==="OVER"?OVER[S.screen]:DUNGEON[S.screen];
+  for(let y=0;y<ROWS;y++)for(let x=0;x<COLS;x++){
+    drawTileToCtx(cx,grid[y][x],x*TILE,y*TILE,S.map!=="OVER");
+  }
+  bgCache[key]=c; return c;
+}
+// dessine une tuile sur un contexte donné (utilisé pour pré-rendre le fond)
+function pxc(ctx,x,y,w,h,c){ ctx.fillStyle=c; ctx.fillRect(x|0,y|0,w,h); }
+function drawTileToCtx(ctx,ch,x,y,dungeon){
+  if(dungeon){ pxc(ctx,x,y,TILE,TILE,'#3a3d55'); pxc(ctx,x+1,y+1,TILE-2,TILE-2,'#4a4e6b'); }
+  else { pxc(ctx,x,y,TILE,TILE,'#3c7d3a'); if((x+y)%32===0)pxc(ctx,x+3,y+3,2,2,'#4f9147'); pxc(ctx,x+9,y+10,2,2,'#348034'); }
+  switch(ch){
+    case 'T': pxc(ctx,x+1,y+4,14,11,'#245a20'); pxc(ctx,x+3,y+2,10,10,'#2f7a2a'); pxc(ctx,x+5,y+4,6,5,'#3f9636'); pxc(ctx,x+6,y+11,4,4,'#5a3a1e'); break;
+    case 'R': pxc(ctx,x+2,y+3,12,11,'#7a7f92'); pxc(ctx,x+3,y+4,10,9,'#9aa0b4'); pxc(ctx,x+5,y+6,4,3,'#6a6f82'); break;
+    case 'W': pxc(ctx,x,y,TILE,TILE,'#2b5fb0'); pxc(ctx,x,y,TILE,TILE/2,'#3a76d0'); pxc(ctx,x+2,y+9,5,1,'#a9c8ff'); pxc(ctx,x+9,y+5,4,1,'#a9c8ff'); break;
+    case 'B': pxc(ctx,x,y,TILE,TILE,'#2b5fb0'); pxc(ctx,x,y+1,TILE,4,'#8a5a2b'); pxc(ctx,x,y+7,TILE,4,'#8a5a2b'); pxc(ctx,x,y+13,TILE,3,'#8a5a2b'); break;
+    case '#': pxc(ctx,x,y,TILE,TILE,'#23263a'); pxc(ctx,x+1,y+1,TILE-2,6,'#333756'); pxc(ctx,x+1,y+9,TILE-2,6,'#2b2f4a'); break;
+    case 'C': pxc(ctx,x,y,TILE,TILE, dungeon?'#3a3d55':'#3c7d3a'); pxc(ctx,x+2,y+2,12,13,'#4a4e6b'); pxc(ctx,x+3,y+4,10,11,'#0a0b12'); pxc(ctx,x+5,y+2,6,3,'#6a6f8c'); break;
+    case 'D': pxc(ctx,x,y,TILE,TILE,'#23263a'); pxc(ctx,x+2,y+1,12,15,'#8a5a2b'); pxc(ctx,x+4,y+2,8,13,'#a56a33'); pxc(ctx,x+6,y+6,4,5,'#e8c84a'); pxc(ctx,x+7,y+8,2,3,'#5a3a1e'); break;
+    case ',': pxc(ctx,x,y,TILE,TILE, dungeon?'#4a4e6b':'#c9b27a'); if(!dungeon){pxc(ctx,x+3,y+4,2,2,'#b89e63');pxc(ctx,x+10,y+9,2,2,'#b89e63');} break;
+  }
+}
+
+// ---- sprites des personnages (dessinés au trait) ----
+const FUR='#f2d3a8',FUR2='#d9b083',TUN='#2f6bd6',TUN2='#1f4aa0',DK='#2a2320',
+      SWD='#dfe6f5',HILT='#8a5a2b',PINK='#e58aa0';
+function drawTiShaw(x,y,dir,step,attack,blink){
+  if(blink) return; // clignote pendant l'invulnérabilité
+  const foot = step? 1 : 0;
+  // ombre
+  px(x+2,y+15,11,2,'rgba(0,0,0,.28)');
+  if(dir===0){ // dos
+    px(x+2,y,3,4,FUR); px(x+10,y,3,4,FUR);            // oreilles
+    px(x+3,y+2,9,7,FUR2);                              // arrière tête
+    px(x+2,y+8,11,6,TUN); px(x+3,y+9,9,4,TUN2);        // tunique dos
+    px(x+3+foot*2,y+13,3,3,DK); px(x+9-foot*2,y+13,3,3,DK);
+  } else if(dir===2){ // face
+    px(x+2,y,3,4,FUR); px(x+3,y+1,1,2,PINK);
+    px(x+10,y,3,4,FUR); px(x+11,y+1,1,2,PINK);
+    px(x+3,y+2,9,7,FUR);                               // tête
+    px(x+5,y+4,2,2,DK); px(x+9,y+4,2,2,DK);            // yeux
+    px(x+7,y+6,1,1,PINK);                              // museau
+    px(x+2,y+8,11,6,TUN); px(x+4,y+9,7,3,TUN2);
+    px(x+3+foot*2,y+13,3,3,DK); px(x+9-foot*2,y+13,3,3,DK);
+  } else { // profil (gauche/droite) — on dessine à droite puis miroir
+    const flip = dir===3;
+    const bx = flip? x+14 : x, s = flip? -1 : 1;
+    const P=(ox,oy,w,h,c)=>px(bx+ s*ox - (s<0? w:0), y+oy, w, h, c);
+    P(2,0,3,4,FUR); P(3,1,1,2,PINK);                   // oreille
+    P(3,2,9,7,FUR);                                    // tête
+    P(9,4,2,2,DK);                                     // œil avant
+    P(12,6,2,1,PINK);                                  // museau
+    P(2,8,10,6,TUN); P(3,9,8,3,TUN2);
+    P(4+foot*2,13,3,3,DK); P(8-foot*2,13,3,3,DK);
+    // queue derrière
+    P(-1,7,3,2,FUR2);
+  }
+  // épée pendant l'attaque
+  if(attack>0){
+    const t=attack;
+    if(dir===0){ px(x+6,y-9,3,11,SWD); px(x+5,y+1,5,3,HILT); }
+    else if(dir===2){ px(x+6,y+14,3,11,SWD); px(x+5,y+12,5,3,HILT); }
+    else if(dir===3){ px(x-9,y+7,11,3,SWD); px(x-1,y+6,3,5,HILT); }
+    else { px(x+14,y+7,11,3,SWD); px(x+12,y+6,3,5,HILT); }
+  }
+}
+function drawBigNip(x,y,phase){
+  const bob=Math.sin(phase)*2|0;
+  y=(y+bob)|0;
+  px(x+1,y+12,10,2,'rgba(0,0,0,.22)'); // ombre
+  // queue
+  px(x-3,y+2,4,6,'#e56a1a'); px(x-2,y+3,2,4,'#ff8a2a');
+  // corps
+  px(x+1,y+1,9,9,'#ff8a2a'); px(x+2,y,7,11,'#ff8a2a');
+  px(x+2,y+2,7,7,'#ffab5a');           // ventre clair
+  // nageoire dorsale
+  px(x+4,y-2,4,3,'#e56a1a');
+  // œil
+  px(x+7,y+3,3,3,'#ffffff'); px(x+8,y+4,2,2,'#1a1a2a');
+  // bouche
+  px(x+9,y+7,2,1,'#c94a1a');
+}
+function drawEnemy(en){
+  const x=en.x,y=en.y, c=en.hurt>0?'#ffffff':'#8a4fd0', c2=en.hurt>0?'#dddddd':'#6a2fb0';
+  px(x+2,y+14,11,2,'rgba(0,0,0,.25)');
+  px(x+2,y+3,11,10,c2); px(x+3,y+2,9,10,c);
+  px(x+2,y+11,2,3,c2); px(x+7,y+12,2,2,c2); px(x+11,y+11,2,3,c2); // tentacules
+  px(x+4,y+5,2,3,'#fff'); px(x+9,y+5,2,3,'#fff'); px(x+5,y+6,1,2,DK); px(x+10,y+6,1,2,DK);
+}
+function drawBoss(bo){
+  const x=bo.x,y=bo.y, c=bo.hurt>0?'#ffffff':'#c0392b', c2=bo.hurt>0?'#ddd':'#8a1f14';
+  px(x+2,y+21,20,3,'rgba(0,0,0,.3)');
+  px(x+1,y+4,22,17,c2); px(x+3,y+2,18,17,c);
+  px(x,y,4,5,c2); px(x+19,y,4,5,c2);                 // cornes
+  px(x+5,y+7,4,4,'#fff'); px(x+15,y+7,4,4,'#fff');
+  px(x+6,y+8,2,3,DK); px(x+16,y+8,2,3,DK);
+  px(x+8,y+14,8,3,'#5a0f08');                        // bouche
+  // barre de vie
+  px(x-2,y-6,26,3,'#000'); px(x-1,y-5,Math.max(0,bo.hp)*3,1,'#ff5a4a');
+}
+function drawGem(gm){ const x=gm.x,y=gm.y,t=(Date.now()/300)%2|0;
+  px(x-3,y-1,6,4,'#20d0c0'); px(x-2,y-3,4,8,'#20d0c0'); px(x-1,y-2,2,2,'#bff'); if(t)px(x+2,y-4,1,1,'#fff'); }
+function drawKey(k){ const x=k.x,y=k.y;
+  px(x-1,y-4,3,7,'#e8c84a'); px(x-3,y-5,7,4,'#f5e06a'); px(x-1,y-4,3,2,'#8a6a10'); px(x,y+2,3,2,'#e8c84a'); }
+function drawStar(st){ const x=st.x,y=st.y,r=6+Math.sin(st.phase)*1;
+  // halo
+  g.fillStyle='rgba(255,230,120,.25)'; g.beginPath(); g.arc(x,y,r+6,0,7); g.fill();
+  g.fillStyle='#ffe66a';
+  g.beginPath();
+  for(let i=0;i<10;i++){ const a=-Math.PI/2+i*Math.PI/5, rr=i%2?3:r+2;
+    g.lineTo(x+Math.cos(a)*rr, y+Math.sin(a)*rr); }
+  g.closePath(); g.fill();
+  px(x-1,y-1,2,2,'#fff8c0'); }
+
+function drawHUD(){
+  px(0,0,VIEW_W,HUD_H,'#0d1020'); px(0,HUD_H-1,VIEW_W,1,'#2a3350');
+  // cœurs
+  for(let i=0;i<S.maxHearts/2;i++){
+    const hx=6+i*13, full=S.hearts>=(i+1)*2, half=!full&&S.hearts===i*2+1;
+    px(hx,7,10,3,'#3a1420');
+    if(full||half){ g.fillStyle='#e0384a';
+      const w=full?10:5; px(hx,5,w,8,'#e0384a'); px(hx+ (full?2:1),4,full?2:1,1,'#ff6a7a'); }
+  }
+  // gemmes
+  drawGem({x:VIEW_W-70,y:11}); px(VIEW_W-64,4,40,12,'rgba(0,0,0,0)');
+  g.fillStyle='#cbd3e0'; g.font='9px monospace';
+  g.fillText('x'+S.gems, VIEW_W-60, 15);
+  // clés
+  drawKey({x:VIEW_W-30,y:14}); g.fillText('x'+S.keys, VIEW_W-24, 15);
+  // titre / message
+  g.fillStyle='#8fa0c8'; g.font='8px monospace';
+  g.fillText(S.map==="OVER"?('Hélio · zone '+(S.screen+1)):'Donjon de la station', 70,10);
+  if(S.msg){ g.fillStyle='#ffdf6a'; g.fillText(S.msg,70,22); }
+}
+
+function overlay(title,lines,col){
+  g.fillStyle='rgba(6,8,18,.82)'; g.fillRect(0,0,VIEW_W,cv.height);
+  g.textAlign='center';
+  g.fillStyle=col||'#ff8a2a'; g.font='bold 16px "Trebuchet MS",monospace';
+  g.fillText(title, VIEW_W/2, 70);
+  g.fillStyle='#cbd3e0'; g.font='9px monospace';
+  lines.forEach((l,i)=>g.fillText(l, VIEW_W/2, 96+i*14));
+  g.textAlign='left';
+}
+
+function render(){
+  // vue de jeu (décalée sous le HUD)
+  g.save(); g.translate(0,HUD_H);
+  g.drawImage(buildBg(),0,0);
+  const e=curEnt();
+  // gemmes / clé / étoile
+  for(const gm of e.gems) if(!gm.got) drawGem(gm);
+  if(e.key&&!e.key.got) drawKey(e.key);
+  // ennemis
+  for(const en of e.enemies) if(en.alive) drawEnemy(en);
+  if(e.boss&&e.boss.alive) drawBoss(e.boss);
+  // BigNip derrière/à côté
+  drawBigNip(S.fish.x|0,S.fish.y|0,S.fish.phase);
+  // Ti-Shaw
+  drawTiShaw(S.px|0,S.py|0,S.dir,S.step,S.attack,(S.inv>0&&((S.inv>>2)&1)));
+  // bulles
+  for(const b of S.bubbles){
+    g.fillStyle=b.foe?'rgba(255,90,90,.8)':'rgba(180,225,255,.85)';
+    g.beginPath(); g.arc(b.x,b.y,3.5,0,7); g.fill();
+    px(b.x-1,b.y-1,1,1,'#fff');
+  }
+  if(e.star) drawStar(e.star);
+  g.restore();
+
+  drawHUD();
+
+  if(S.mode==='title'){
+    overlay('TI-SHAW', [
+      "et l'Étoile perdue d'Hélio",
+      "",
+      "Ti-Shaw + Mister BigNip le poisson orange",
+      "Récupère l'Étoile au fond du donjon !",
+      "", "— Entrée pour commencer —"
+    ]);
+  } else if(S.mode==='pause'){
+    overlay('PAUSE', ["— P pour reprendre —"], '#8fa0c8');
+  } else if(S.mode==='dead'){
+    overlay('Ti-Shaw est K.O.', ["Mister BigNip est triste…","","— Entrée pour recommencer —"], '#e0384a');
+  } else if(S.mode==='win'){
+    overlay('VICTOIRE !', [
+      "L'Étoile d'Hélio brille de nouveau.",
+      "Gemmes ramassées : "+S.gems,
+      "Ti-Shaw et BigNip rentrent en héros !",
+      "", "— Entrée pour rejouer —"
+    ], '#ffe66a');
+  }
+}
+
+/* =====================================================================
+   8) BOUCLE À PAS FIXE (stable même à 30 fps)
+   ===================================================================== */
+let acc=0, last=performance.now(); const STEP=1000/60;
+function loop(now){
+  acc += now-last; last=now;
+  if(acc>200) acc=200;          // évite la spirale de la mort
+  let guard=0;
+  while(acc>=STEP && guard<6){ update(); acc-=STEP; guard++; }
+  render();
+  requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+
+/* ---- commandes tactiles simples (mobile/tablette) ---- */
+let touchId=null,tsx=0,tsy=0;
+cv.addEventListener('touchstart',e=>{ const t=e.changedTouches[0]; touchId=t.identifier; tsx=t.clientX; tsy=t.clientY;
+  if(S.mode!=='play'){ if(S.mode!=='pause'){resetGame();S.mode='play';} } else doAttack();
+  e.preventDefault(); },{passive:false});
+cv.addEventListener('touchmove',e=>{ for(const t of e.changedTouches){ if(t.identifier===touchId){
+  const dx=t.clientX-tsx, dy=t.clientY-tsy, dead=14;
+  keys['arrowleft']=dx<-dead; keys['arrowright']=dx>dead; keys['arrowup']=dy<-dead; keys['arrowdown']=dy>dead;
+} } e.preventDefault(); },{passive:false});
+cv.addEventListener('touchend',e=>{ if([...e.changedTouches].some(t=>t.identifier===touchId)){
+  touchId=null; keys['arrowleft']=keys['arrowright']=keys['arrowup']=keys['arrowdown']=false; } },{passive:false});
+</script>
