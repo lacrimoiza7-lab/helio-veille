@@ -1,5 +1,5 @@
 {
-  "genere_le": "2026-08-16T13:10:00Z",
+  "genere_le": "2026-08-17T13:40:00Z",
   "rien_a_signaler": true,
   "sources_consultees": [
     "https://gcn.nasa.gov/circulars",
@@ -8,6 +8,6 @@
     "https://www.wis-tns.org/",
     "https://www.swift.ac.uk/"
   ],
-  "notes": "Comme lors du relevé précédent, aucune des sources primaires n'a pu être consultée directement : gcn.nasa.gov, gcn.gsfc.nasa.gov, astronomerstelegram.org, wis-tns.org et swift.ac.uk ont toutes renvoyé une erreur EGRESS_BLOCKED via WebFetch, confirmée par un test curl direct (tunnel CONNECT refusé, code 403) — il s'agit d'une restriction réseau de cet environnement, pas d'une panne côté serveur. Des recherches web de repli ciblant des désignations GRB/AT/SN et circulaires GCN datées du 14 au 16 août 2026 n'ont fait remonter aucun événement vérifiable de cette fenêtre avec une page source précise et datable. Aucun événement n'est donc rapporté ; cela ne signifie pas qu'il ne s'est rien passé dans le ciel, seulement qu'aucune vérification directe des sources n'a été possible aujourd'hui.",
+  "notes": "Comme lors des relevés précédents, aucune des sources primaires n'a pu être consultée directement : gcn.nasa.gov, gcn.gsfc.nasa.gov, astronomerstelegram.org, wis-tns.org et swift.ac.uk ont toutes renvoyé une erreur EGRESS_BLOCKED via WebFetch. Un test de contrôle sur www.google.com a renvoyé la même erreur, confirmant qu'il s'agit d'un blocage réseau général de cet environnement (proxy de sortie) et non d'une panne spécifique à ces sites. Des recherches web de repli ciblant des GRB, novæ, kilonovæ, TDE, FRB et contreparties d'ondes gravitationnelles datés du 15 au 17 août 2026 n'ont fait remonter aucun événement vérifiable de cette fenêtre avec une page source précise et datable ; les résultats obtenus concernaient tous des événements antérieurs (mars, juin, début août 2026) ou postérieurs. Aucun événement n'est donc rapporté ; cela ne signifie pas qu'il ne s'est rien passé dans le ciel, seulement qu'aucune vérification directe des sources primaires n'a été possible aujourd'hui.",
   "evenements": []
 }
