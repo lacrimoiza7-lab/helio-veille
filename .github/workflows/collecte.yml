@@ -1,0 +1,58 @@
+name: Collecte des mesures
+
+# Toutes les 4 heures. Ce n'est PAS la resolution des donnees : les flux
+# portent leur propre fenetre glissante (24 h a la minute pour le vent
+# solaire, 6 h pour le Kp et les rayons X), donc passer toutes les 4 h suffit
+# a reconstituer un historique a la minute sans aucun trou.
+#
+# Pourquoi pas plus souvent : GitHub repousse couramment les taches planifiees
+# de 5 a 20 minutes quand ses files sont chargees, et peut en sauter. Avec des
+# fenetres de 6 a 24 h, un retard — voire une execution manquee — ne coute
+# rien. Avec une cadence de 5 minutes, il couterait des trous.
+on:
+  schedule:
+    - cron: "0 */4 * * *"
+  workflow_dispatch:        # pour declencher a la main depuis l'onglet Actions
+
+# Le job ecrit dans le depot : sans cette permission, le push est refuse.
+permissions:
+  contents: write
+
+# Deux executions qui se chevauchent se marcheraient dessus au moment du push.
+concurrency:
+  group: collecte
+  cancel-in-progress: false
+
+jobs:
+  collecte:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Collecter
+        run: python collecte.py
+
+      - name: Publier
+        run: |
+          git config user.name  "collecte helio-watch"
+          git config user.email "action@github.com"
+          git add mesures
+          # Rien de neuf : c'est le cas normal quand une source n'a pas
+          # publie depuis la derniere passe. Ce n'est pas une erreur, et il ne
+          # faut surtout pas creer un commit vide toutes les 4 heures.
+          if git diff --cached --quiet; then
+            echo "aucune mesure nouvelle — rien a publier"
+            exit 0
+          fi
+          git commit -m "mesures — $(date -u '+%Y-%m-%d %H:%M UTC')"
+          # Une execution manuelle peut coincider avec la planifiee : on
+          # rejoue par-dessus ce qui est arrive entre-temps plutot que
+          # d'echouer sur un rejet de push.
+          git pull --rebase --autostash
+          git push
