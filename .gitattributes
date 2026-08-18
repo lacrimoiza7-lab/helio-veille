@@ -1,0 +1,13 @@
+# Les fichiers de mesures sont compresses : git ne doit JAMAIS y toucher.
+# Sans cette ligne, il s'en remet a sa detection automatique. Elle fonctionne
+# aujourd'hui — verifie : un .gz pousse depuis Windows se retelecharge intact
+# et se decompresse — mais elle reste une heuristique, et une conversion de
+# fins de ligne sur un flux compresse le detruirait silencieusement. La
+# collecte tourne sous Linux et le depot est lu depuis Windows : autant ne
+# rien laisser a deviner.
+*.gz binary
+
+# Le collecteur ecrit ses NDJSON avec des fins de ligne \n explicites.
+*.py  text eol=lf
+*.yml text eol=lf
+*.md  text eol=lf
