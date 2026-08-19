@@ -1,14 +1,15 @@
 {
-  "genere_le": "2026-08-18T13:30:00Z",
+  "genere_le": "2026-08-19T13:35:00Z",
   "rien_a_signaler": true,
   "sources_consultees": [
     "https://gcn.nasa.gov/circulars",
-    "https://gcn.gsfc.nasa.gov/gcn3_archive_GRB.html",
     "https://www.astronomerstelegram.org/",
     "https://www.wis-tns.org/",
     "https://www.swift.ac.uk/",
-    "https://heasarc.gsfc.nasa.gov/"
+    "https://gcn.gsfc.nasa.gov/",
+    "https://heasarc.gsfc.nasa.gov/",
+    "https://www.einsteinprobe.org/"
   ],
-  "notes": "Comme les jours précédents (15, 16 et 17 août 2026), aucune source primaire n'a pu être consultée : gcn.nasa.gov, gcn.gsfc.nasa.gov, astronomerstelegram.org, wis-tns.org, swift.ac.uk et heasarc.gsfc.nasa.gov ont toutes renvoyé une erreur EGRESS_BLOCKED via WebFetch. Un test de contrôle sur en.wikipedia.org a renvoyé la même erreur, confirmant qu'il s'agit d'une politique réseau de l'environnement qui bloque l'accès sortant général (seul GitHub reste joignable), et non d'une panne ponctuelle de ces sites. Des recherches web de repli sur les GRB, novæ, kilonovæ, TDE, FRB et contreparties d'ondes gravitationnelles n'ont fait remonter aucun événement vérifiable daté du 16 au 18 août 2026 avec une page source précise ; les seuls résultats datables concernaient des découvertes TNS du 7 au 10 août (hors fenêtre des 48h) sans lien vers une circulaire ou une page individuelle exploitable ici. Aucun événement n'est donc rapporté : ceci reflète l'impossibilité de vérifier les sources aujourd'hui, pas l'absence réelle d'activité dans le ciel. Ce blocage réseau dure depuis au moins quatre relevés consécutifs (15 au 18 août) et empêche structurellement cette veille de remplir sa fonction ; une correction de la politique d'accès réseau de l'environnement est nécessaire.",
+  "notes": "Comme lors des relevés précédents (15 au 18 août 2026), aucune source primaire n'a pu être consultée aujourd'hui. WebFetch a renvoyé EGRESS_BLOCKED pour gcn.nasa.gov, astronomerstelegram.org et wis-tns.org. Un contrôle direct via curl a confirmé la cause : le proxy de sortie de l'environnement renvoie un refus HTTP 403 (politique d'organisation) sur les tunnels CONNECT vers gcn.nasa.gov, gcn.gsfc.nasa.gov, heasarc.gsfc.nasa.gov, swift.ac.uk et wis-tns.org — seul github.com reste joignable depuis cette session. Il ne s'agit pas d'une panne de ces sites mais d'un blocage réseau structurel de l'environnement, qui dure maintenant depuis au moins cinq relevés consécutifs (15 au 19 août). Aucun événement n'est rapporté : ceci reflète l'impossibilité de vérifier quoi que ce soit aujourd'hui, pas l'absence d'activité réelle dans le ciel. Une intervention humaine est nécessaire pour autoriser l'accès sortant vers ces domaines dans la politique réseau de la session, faute de quoi cette veille restera vide chaque jour.",
   "evenements": []
 }
