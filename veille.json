@@ -1,5 +1,5 @@
 {
-  "genere_le": "2026-08-19T13:35:00Z",
+  "genere_le": "2026-08-20T13:24:00Z",
   "rien_a_signaler": true,
   "sources_consultees": [
     "https://gcn.nasa.gov/circulars",
@@ -7,9 +7,8 @@
     "https://www.wis-tns.org/",
     "https://www.swift.ac.uk/",
     "https://gcn.gsfc.nasa.gov/",
-    "https://heasarc.gsfc.nasa.gov/",
     "https://www.einsteinprobe.org/"
   ],
-  "notes": "Comme lors des relevés précédents (15 au 18 août 2026), aucune source primaire n'a pu être consultée aujourd'hui. WebFetch a renvoyé EGRESS_BLOCKED pour gcn.nasa.gov, astronomerstelegram.org et wis-tns.org. Un contrôle direct via curl a confirmé la cause : le proxy de sortie de l'environnement renvoie un refus HTTP 403 (politique d'organisation) sur les tunnels CONNECT vers gcn.nasa.gov, gcn.gsfc.nasa.gov, heasarc.gsfc.nasa.gov, swift.ac.uk et wis-tns.org — seul github.com reste joignable depuis cette session. Il ne s'agit pas d'une panne de ces sites mais d'un blocage réseau structurel de l'environnement, qui dure maintenant depuis au moins cinq relevés consécutifs (15 au 19 août). Aucun événement n'est rapporté : ceci reflète l'impossibilité de vérifier quoi que ce soit aujourd'hui, pas l'absence d'activité réelle dans le ciel. Une intervention humaine est nécessaire pour autoriser l'accès sortant vers ces domaines dans la politique réseau de la session, faute de quoi cette veille restera vide chaque jour.",
+  "notes": "Comme lors des six relevés précédents (15 au 19 août 2026), aucune source primaire n'a pu être consultée : WebFetch a renvoyé EGRESS_BLOCKED pour gcn.nasa.gov, www.astronomerstelegram.org, www.wis-tns.org, www.swift.ac.uk et gcn.gsfc.nasa.gov, et une erreur DNS (ENOTFOUND) pour www.einsteinprobe.org. Des recherches web de repli (WebSearch) n'ont renvoyé que des circulaires GCN et articles anciens (2025 ou antérieurs) ou des dépêches de vulgarisation portant sur des événements déjà connus, sans URL de circulaire précise datée des dernières 48 heures — aucun de ces résultats n'a donc été retenu. Le blocage réseau structurel de l'environnement dure maintenant depuis au moins six relevés consécutifs (15 au 20 août) ; aucun événement n'est rapporté ici faute de pouvoir rien vérifier, pas parce que le ciel serait resté calme. Une intervention humaine reste nécessaire pour autoriser l'accès sortant vers ces domaines.",
   "evenements": []
 }
