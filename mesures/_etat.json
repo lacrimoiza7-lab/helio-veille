@@ -1,33 +1,30 @@
 {
-  "collecte_le": "2026-08-20T08:33:36+00:00",
+  "collecte_le": "2026-08-20T12:39:55+00:00",
   "sources": {
     "vent": {
       "ok": true,
-      "recus": 1221,
-      "nouveaux": 191,
+      "recus": 1173,
+      "nouveaux": 186,
       "fenetre_h": 23.9,
-      "dernier": "2026-08-20T08:26:00+00:00"
+      "dernier": "2026-08-20T12:35:00+00:00"
     },
     "mag": {
       "ok": true,
-      "recus": 1379,
-      "nouveaux": 228,
+      "recus": 1356,
+      "nouveaux": 225,
       "fenetre_h": 23.9,
-      "dernier": "2026-08-20T08:27:00+00:00"
+      "dernier": "2026-08-20T12:36:00+00:00"
     },
     "kp": {
       "ok": true,
       "recus": 358,
-      "nouveaux": 240,
+      "nouveaux": 247,
       "fenetre_h": 6.0,
-      "dernier": "2026-08-20T08:30:00+00:00"
+      "dernier": "2026-08-20T12:37:00+00:00"
     },
     "rayons_x": {
-      "ok": true,
-      "recus": 358,
-      "nouveaux": 239,
-      "fenetre_h": 6.0,
-      "dernier": "2026-08-20T08:29:00+00:00"
+      "ok": false,
+      "erreur": "Unterminated string starting at: line 1 column 163705 (char 163704)"
     },
     "f107": {
       "ok": true,
@@ -38,10 +35,10 @@
     },
     "seismes": {
       "ok": true,
-      "recus": 324,
-      "nouveaux": 61,
+      "recus": 298,
+      "nouveaux": 46,
       "fenetre_h": 23.9,
-      "dernier": "2026-08-20T08:29:36.058000+00:00"
+      "dernier": "2026-08-20T12:37:47.080000+00:00"
     },
     "aurore": {
       "ok": true,
