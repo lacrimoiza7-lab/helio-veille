@@ -1,14 +1,13 @@
 {
-  "genere_le": "2026-08-20T13:24:00Z",
+  "genere_le": "2026-08-21T13:26:00Z",
   "rien_a_signaler": true,
   "sources_consultees": [
     "https://gcn.nasa.gov/circulars",
     "https://www.astronomerstelegram.org/",
     "https://www.wis-tns.org/",
     "https://www.swift.ac.uk/",
-    "https://gcn.gsfc.nasa.gov/",
-    "https://www.einsteinprobe.org/"
+    "https://gcn.gsfc.nasa.gov/gcn3_archive.html"
   ],
-  "notes": "Comme lors des six relevés précédents (15 au 19 août 2026), aucune source primaire n'a pu être consultée : WebFetch a renvoyé EGRESS_BLOCKED pour gcn.nasa.gov, www.astronomerstelegram.org, www.wis-tns.org, www.swift.ac.uk et gcn.gsfc.nasa.gov, et une erreur DNS (ENOTFOUND) pour www.einsteinprobe.org. Des recherches web de repli (WebSearch) n'ont renvoyé que des circulaires GCN et articles anciens (2025 ou antérieurs) ou des dépêches de vulgarisation portant sur des événements déjà connus, sans URL de circulaire précise datée des dernières 48 heures — aucun de ces résultats n'a donc été retenu. Le blocage réseau structurel de l'environnement dure maintenant depuis au moins six relevés consécutifs (15 au 20 août) ; aucun événement n'est rapporté ici faute de pouvoir rien vérifier, pas parce que le ciel serait resté calme. Une intervention humaine reste nécessaire pour autoriser l'accès sortant vers ces domaines.",
+  "notes": "Comme lors des relevés précédents (15 au 20 août 2026), aucune source primaire n'a pu être consultée directement : WebFetch a renvoyé EGRESS_BLOCKED pour gcn.nasa.gov, gcn.gsfc.nasa.gov, www.astronomerstelegram.org, www.wis-tns.org et www.swift.ac.uk. Des recherches web de repli (WebSearch) ont été tentées pour GRB, FRB, TDE et contreparties d'ondes gravitationnelles sur la fenêtre 2026-08-19/21 ; elles n'ont fait remonter que la circulaire GCN #45391 (GRB 260818A, SVOM, 2026-08-18T01:04:36Z), antérieure de plus de 48 heures à ce relevé, et aucun autre résultat daté et vérifiable dans la fenêtre des dernières 48 heures. Le blocage réseau structurel de l'environnement dure donc depuis au moins sept relevés consécutifs (15 au 21 août) ; aucun événement n'est rapporté ici faute de pouvoir rien vérifier par un lien direct vers la source primaire, pas parce que le ciel serait resté calme. Une intervention humaine reste nécessaire pour autoriser l'accès sortant vers ces domaines.",
   "evenements": []
 }
