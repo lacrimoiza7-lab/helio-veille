@@ -1,33 +1,33 @@
 {
-  "collecte_le": "2026-08-23T08:24:13+00:00",
+  "collecte_le": "2026-08-23T12:32:22+00:00",
   "sources": {
     "vent": {
       "ok": true,
-      "recus": 1372,
-      "nouveaux": 195,
+      "recus": 1357,
+      "nouveaux": 233,
       "fenetre_h": 23.9,
-      "dernier": "2026-08-23T08:18:00+00:00"
+      "dernier": "2026-08-23T12:27:00+00:00"
     },
     "mag": {
       "ok": true,
       "recus": 1437,
-      "nouveaux": 232,
+      "nouveaux": 248,
       "fenetre_h": 23.9,
-      "dernier": "2026-08-23T08:19:00+00:00"
+      "dernier": "2026-08-23T12:27:00+00:00"
     },
     "kp": {
       "ok": true,
       "recus": 358,
-      "nouveaux": 230,
+      "nouveaux": 249,
       "fenetre_h": 6.0,
-      "dernier": "2026-08-23T08:19:00+00:00"
+      "dernier": "2026-08-23T12:28:00+00:00"
     },
     "rayons_x": {
       "ok": true,
       "recus": 358,
-      "nouveaux": 231,
+      "nouveaux": 249,
       "fenetre_h": 6.0,
-      "dernier": "2026-08-23T08:20:00+00:00"
+      "dernier": "2026-08-23T12:29:00+00:00"
     },
     "f107": {
       "ok": true,
@@ -38,17 +38,17 @@
     },
     "seismes": {
       "ok": true,
-      "recus": 221,
-      "nouveaux": 51,
-      "fenetre_h": 23.9,
-      "dernier": "2026-08-23T08:19:44.610000+00:00"
+      "recus": 281,
+      "nouveaux": 103,
+      "fenetre_h": 23.8,
+      "dernier": "2026-08-23T12:28:13.060000+00:00"
     },
     "aurore": {
       "ok": true,
       "recus": 1,
       "nouveaux": 1,
       "fenetre_h": 0.0,
-      "dernier": "2026-08-23T08:14:00+00:00"
+      "dernier": "2026-08-23T12:25:00+00:00"
     }
   },
   "purges": 0
