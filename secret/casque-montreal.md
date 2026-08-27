@@ -451,7 +451,63 @@ sir John A. Macdonald. L'arrêt 23 est la **maison George-Stephen, 1440 Drummond
 partie des sept mots-clés désignés par Preiss. Les accrocher au baldaquin
 Macdonald, c'est bâtir sur du décor.
 
-## Ce qui résiste — les deux premières lignes
+## « Lane » — trouvée, 2026-08-27
+
+**Saint David's Lane**, Montréal. Rue disparue.
+
+- D'abord **St. Edward's Lane**, renommée par décret municipal le
+  **14 septembre 1863**.
+- Courait sur **deux pâtés entre Notre-Dame et Saint-Antoine**, « juste à
+  l'extérieur des murs de la ville » — donc dans le bas de la ville vers McGill,
+  à la lisière de Griffintown. **Localisation exacte [à faire]** : plans Goad,
+  cartes numérisées de BAnQ.
+- Si étroite qu'en 1908 le *Montreal Standard* écrit qu'« un cheval et une
+  charrette peuvent à peine y passer ». En 1909 un journal la donne pour
+  « l'endroit le plus mal famé de la ville » — plus d'une douzaine de meurtres
+  entre 1889 et 1909.
+- **Expropriée au début des années 1960** pour l'autoroute Bonaventure en vue
+  d'Expo 67 (chantier ouvert en 1965).
+
+**Voilà pourquoi elle était introuvable** : les 131 463 toponymes officiels
+décrivent la carte d'aujourd'hui. La rue est morte depuis soixante ans. Toutes
+les recherches précédentes, y compris les miennes, cherchaient dans le mauvais
+siècle.
+
+### Ce qu'elle désigne
+
+La **première église St. George's** ouvre le 30 juin 1843 au coin de la rue
+Notre-Dame (alors rue Saint-Joseph) **et de Saint David's Lane**.
+
+L'église St. George's **actuelle** est au 1101 rue Stanley, coin de la
+Gauchetière — **face à la Place du Canada, en face de la gare Windsor**.
+Néo-gothique, chantier 1869, ouverte le 9 octobre 1870. Architecte :
+**William Tutin Thomas** — *le même que la maison George-Stephen*, devant
+laquelle est planté le leg-eater. Clocher de 1894 par Alexander Francis Dunlop.
+Charpente à faux-entraits apparents dont la portée n'est dépassée au monde que
+par **Westminster Hall**. Site historique national du Canada depuis 1990.
+
+**[hypothèse]** `Lane` n'est pas le lieu où creuser — on ne creuse pas sous
+l'autoroute Bonaventure, et la rue avait disparu vingt ans avant l'écriture.
+C'est une **clé d'identification** : l'origine de St. George's, qui désigne
+St. George's d'aujourd'hui.
+
+**Pourquoi cette piste vaut mieux que les autres du jour** : elle **resserre**.
+Dollard des Ormeaux envoyait au parc La Fontaine, l'orme au Mont-Royal — chaque
+fois la cible se déplaçait. `Lane` part du Vieux-Montréal et **ramène exactement
+sur le pâté du Sun Life, du Windsor Hall et de la gare Windsor**. C'est le
+premier indice de la séance qui referme au lieu d'ouvrir.
+
+**[à tester]** `Two twenty two` comme numéro civique sur Saint David's Lane — la
+rue ne faisait que deux pâtés, un 222 y est plausible. Demande un annuaire
+Lovell d'époque.
+
+**Note sur le français.** Iza propose « or / ormeaux ». Le livre est écrit en
+anglais par Preiss, Ted Mann et Sean Kelly ; en anglais *elm* ne contient aucun
+*gold*. Montréal est cependant le **seul** des douze sites en territoire
+francophone — si un jeu français existe quelque part dans le livre, c'est ici ou
+nulle part. Premier test contraire : `Lane` s'est résolue sur un nom **anglais**.
+
+## Ce qui résistait — les deux premières lignes (état antérieur)
 
 **« Lane »**, nom propre selon l'équipe de Preiss. Cherché et **non trouvé** :
 
