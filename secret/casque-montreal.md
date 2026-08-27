@@ -74,6 +74,26 @@ secondaire, pas la piste principale.
 À faire : localiser d'où vient le « 1881 » dans l'image, puis balayer les mêmes zones
 (panneaux, bande de damier, cartouches) pour un **45** et un **73** en chiffres.
 
+## Analyse image retournée 180° + zooms (session en cours)
+
+Image redressée puis zooms contrastés (panneaux, col, barre sous le Saltire).
+
+Confirmé :
+- Panneau haut = **Saltire** (croix de St-André) = drapeau écossais.
+- Col = **tartan** (damier + degrés).
+- Panneau bas = **figure humaine nue en mouvement** penchée vers un **objet rond** au sol
+  (rocher / boule / casque ?) — **à identifier**.
+
+Non trouvé / en suspens :
+- **Aucun « 45 » ni « 73 » lisible** repéré dans panneaux / col / barre, à la résolution
+  fournie (photo d'écran de téléphone). La barre sous le Saltire porte de petits
+  caractères **illisibles** à cette résolution.
+- Le crop « 1881 » vient d'une **source plus nette** (scan ?) — c'est celle-là qu'il faut
+  pour lire les chiffres. **Localisation du 1881 dans l'image : à préciser.**
+
+État de l'hypothèse « 45 » : **plausible mais NON vérifiée visuellement à ce stade.**
+Le thème écossais (Saltire + tartan + 1881/George Stephen) est, lui, fortement confirmé.
+
 ## Vers 5 — texte de référence
 
 - **MANQUANT ici.** Le fragment trouvé en ligne (« Lane / Two twenty two … ») s'est
