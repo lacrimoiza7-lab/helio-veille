@@ -382,7 +382,14 @@ Deux échecs à ne pas répéter :
    un **seuillage local** : `encre = image − flou(image, r=14) < −9`. C'est ce
    qui a produit la meilleure image de preuve du dossier.
 
-## Écosse ou Pays-Bas — l'argument (inchangé)
+## Écosse ou Pays-Bas — l'argument
+
+> **Mise à jour 2026-08-27.** Le camp néerlandais gagne un appui **de texte** :
+> le chapitre *The Passage to the New World* range les **Alven** et les
+> **Klabautermannikins** — folklore néerlandais, pas écossais — sous « The
+> Lowlands » avec les gnomes. Voir la section « La Litanie des Joyaux ». La
+> contradiction n'est **pas** résolue pour autant : elle est juste mieux posée.
+> Une image entièrement écossaise pour un peuple néerlandais reste à expliquer.
 
 **Pour l'Écosse :** galon en damier (*diced band*) du bonnet militaire écossais ;
 sautoir au panneau du haut ; second sautoir dans les plis du col ; « Lowlands »
@@ -565,13 +572,16 @@ Iza part de « Dollard des **Ormeaux** » → ormeau = jeune **orme**.
 Preiss écrit en 1982, l'année d'après. `Beneath the only standing member / Of a
 forest` était alors de l'**actualité**, pas une image.
 
-**Ce que ça règle.** La section « Écosse ou Pays-Bas » butait sur une
-contradiction : thème écossais partout dans l'image, **Pays-Bas** dans la
-litanie. **[hypothèse, d'Iza]** si le « Pays-Bas » de la litanie désigne la
-***Dutch* elm disease** et non un peuple, la contradiction tombe — la nation
-pointe l'**arbre**. C'est la mécanique de rébus confirmée de Palencar
-(`L + cloche = Liberty`). **Dépend entièrement de la litanie de l'image 9, qui
-est toujours marquée [à vérifier sur le livre].**
+**Ce que ça ne règle pas — rectification du même jour.** J'avais écrit ici que
+si le « Pays-Bas » de la litanie désignait la ***Dutch* elm disease** plutôt
+qu'un peuple, la contradiction Écosse/Pays-Bas tombait. **Faux, et corrigé
+quelques heures plus tard** : le livre attribue bel et bien le casque aux
+Néerlandais (voir la section suivante). La nation est donc l'ethnie, comme pour
+les trois casques trouvés, et il n'y a pas de rébus à cet endroit.
+
+L'orme reste une piste sur `the only standing member / Of a forest` — la
+coïncidence de date est réelle et forte. Il ne débloque simplement pas le
+conflit Écosse/Pays-Bas.
 
 **Ce que ça ne donne pas.** Aucun « unique orme debout » documenté au square
 Dorchester ni dans le Golden Square Mile. Sur les 500 survivants : parc Jarry,
@@ -584,6 +594,98 @@ apparaît comme une curiosité ou un élément insolite **au travers de la masse
 boisée homogène** ». Mais son statut est documenté **aujourd'hui** : en 1982
 l'arbre avait 80 ans et n'était remarquable pour personne. **Écarté comme piste
 principale.**
+
+### La Litanie des Joyaux — texte vérifié
+
+Recoupée sur deux sources indépendantes. **Douze couplets**, un par casque :
+
+    Fairies of England proudly bear / Garnet, crown-jewel of their Queen.
+    Brilliant as eyes of Celtic folk, / Cold morning green, their Emerald.
+    The Hadas of Iberia: / Sapphire, shy as a wild field flower.
+    Turquoise the Fays of France keep: stone / Rare as a blue midsummer's day.
+    Dwarves' treasure: purple Amethyst, / Imperial star of Germany.
+    The Opal of the Lowland Gnomes: / A cloud of shining, shifting smoke.
+    A Topaz is the Russian prize: / The royal sunstone, frozen fire.
+    Peridot of old Italy: / Antique, and olivine, and rich.
+    The Ruby out of Araby: / Scarlet of desert sky at dawn.
+    Africa's Diamond, earth-born star, / Bright harvest of the midnight rock.
+    The Nymphs of Hellas cherish sweet / Aquamarine, spring-water clear.
+    From far Cathay, the dragon's Pearl: / Chaste, perfect as the silver moon.
+
+**Confirme la règle des ethnies** sur les trois casques trouvés : Cleveland =
+Hellas, Boston = Italie, Chicago = les Celtes. Montréal = **l'Opale**.
+
+Le registre est celui des **noms anciens** — Hellas, Cathay, Araby, Iberia. Le
+livre n'écrit jamais Greece, China, Arabia, Spain. Ni **Netherlands**, ni
+**Holland**, nulle part dans les couplets. Il n'y a **aucun Pays de Galles** dans
+les douze, et le **péridot est italien**, pas gallois.
+
+**Mais le livre désigne quand même les Pays-Bas** — par les créatures, pas par le
+mot. Le chapitre *The Passage to the New World* groupe sous « The Lowlands » les
+**Alven**, les **Klabautermannikins** et les **Gnomes**. Les Alven sont des
+esprits des eaux du folklore **néerlandais** ; le Klabautermann est l'esprit de
+navire des marins de la mer du Nord, néerlandais et bas-allemand. L'Écosse n'a ni
+l'un ni l'autre — elle a brownies, kelpies, selkies.
+
+**Erreur de méthode à ne pas refaire** (la mienne, 2026-08-27) : j'avais cherché
+la chaîne « Netherlands » dans les couplets, ne l'avais pas trouvée, et conclu
+que le livre ne désignait pas les Pays-Bas. Chercher le **mot** et conclure sur
+le **référent**. Un texte désigne un pays par ses créatures, ses saints, ses
+arbres — c'est même le mode normal de ce livre-là.
+
+**Donc la contradiction Écosse/Pays-Bas tient toujours**, entière et non résolue.
+
+### L'opale — mesurée sur la pierre du bonnet
+
+Le cabochon serti au centre du galon du bonnet, zone `1395,1075 → 1465,1145`.
+Ovale, serti dans un **chaton sombre** qui le sépare nettement des cases du
+damier — un vrai serti, pas un carré du motif. Laiteux, point de lumière en haut.
+
+| zone | teinte médiane | étendue p10-p90 | saturation médiane |
+|---|---|---|---|
+| **cabochon du bonnet** | 72° | 168° | **0,19** |
+| disque de la calendula | 50° | 35° | 0,41 |
+| témoin — peau du front | 45° | 28° | 0,34 |
+| témoin — damier du col | 47° | 73° | 0,38 |
+
+**L'étendue de teinte de 168° ne prouve rien et n'est pas utilisée.** Le scan
+porte une trame CMJN qui mouchette de rouge et de bleu tout ce qu'elle imprime —
+le damier jaune autour de la pierre est moucheté pareil — et une couleur peu
+saturée a une teinte mathématiquement instable. Le chiffre le plus spectaculaire
+des quatre est le seul sans valeur.
+
+**Ce qui tient, c'est la pâleur : 0,19.** C'est la zone la moins saturée mesurée
+dans l'image. Sur les douze gemmes de la Litanie, neuf sont **saturées** —
+améthyste, émeraude, grenat, rubis, saphir, topaze, turquoise, péridot,
+aigue-marine — et aucune ne se peint à 0,19. Restent trois pierres pâles :
+**opale**, **perle**, **diamant**. La perle est à Cathay, le diamant à l'Afrique.
+Ni l'une ni l'autre ne peut être un bonhomme en tartan à Montréal.
+
+→ **La couleur de la pierre confirme seule l'appariement image 9 = Opale**, sans
+passer par la communauté.
+
+→ **Et ça règle la question des deux cabochons** : le joyau de la Litanie est
+celui du **bonnet**. Le disque trouvé par Iza dans la calendula est autre chose —
+doré, deux fois plus saturé (0,41), et toujours inexpliqué.
+
+### Le col n'est aucune carte
+
+Affirmation trouvée dans un aperçu IA de recherche web : les damiers du col
+formeraient « la silhouette stylisée de la carte des Pays-Bas ». **Réfuté.**
+
+Rendu en silhouette pure (zone `960,1960 → 2100,2700`, seuil p72) : le col est
+**bilatéralement symétrique** — deux escaliers en gradins identiques descendant
+vers un V central sous le menton. Aucune côte n'est symétrique ; l'irrégularité
+est la seule signature fiable d'une carte. Le test ne dépend pas du pays proposé
+et vaudrait contre n'importe quelle carte au même endroit. Ni IJsselmeer, ni
+Frise, ni îles de Zélande.
+
+Le même aperçu affirmait aussi une « fleur dorée à **cinq** pétales » : la
+calendula en a **12-13** (mesuré, voir plus haut).
+
+Ce que le rendu montre en revanche : les gradins sont bien des **escaliers
+comptables**, les deux côtés n'ayant pas le même nombre de marches. Décompte
+toujours **[à faire]** — c'est la piste « nombre dessiné », méthode Chicago.
 
 ### La mesure qui recentre
 
