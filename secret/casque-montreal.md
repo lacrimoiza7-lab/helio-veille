@@ -55,6 +55,25 @@ Ce que ça implique à chercher dans l'image 9 :
 - **[à tester]** un **emblème écossais/jacobite** (chardon, tartan, cocarde blanche, Stuart)
   comme pointeur vers « le 45 ».
 
+## Observations directes sur l'image 9 (crops fournis par misty)
+
+- **Motif à damier** sur bandeau + col + poignets = **tartan** → Écosse.
+- Panneau **carré à X** = **croix de Saint-André / Saltire** = drapeau écossais.
+- **Cartouche « 1881 »** lisible dans la peinture (chiffres en clair).
+  → 1881 = **incorporation du Canadien Pacifique (16 fév. 1881)**, **George Stephen 1er président** ;
+  Stephen né en Écosse (Dufftown, 1829), immigré à Montréal. (vérifié)
+- Second panneau : **petite figure humaine** encadrée (identité à préciser).
+- Calendula (fleur d'octobre) tenue près du col.
+- Le gnome tient un **petit objet entre pouce et index**.
+
+**Conséquence méthodo pour « le 45 » :** puisque l'artiste cache des **chiffres lisibles**
+(1881), la voie forte est de **chercher un 45 dissimulé en chiffres**, pas de compter les
+pétales (une seule fleur ne fera jamais 45). Le décompte base-20 reste une porte de sortie
+secondaire, pas la piste principale.
+
+À faire : localiser d'où vient le « 1881 » dans l'image, puis balayer les mêmes zones
+(panneaux, bande de damier, cartouches) pour un **45** et un **73** en chiffres.
+
 ## Vers 5 — texte de référence
 
 - **MANQUANT ici.** Le fragment trouvé en ligne (« Lane / Two twenty two … ») s'est
