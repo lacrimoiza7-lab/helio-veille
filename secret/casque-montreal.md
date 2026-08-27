@@ -247,6 +247,141 @@ visible juste sous le V du col (zone 1450–1650 × 2560–2680). Elle n'est pas
 décorative : elle est dessinée à la hachure comme le reste du tissu. **[à verser
 au dossier écossais]**
 
+## La marque ronde dans la calendula — trouvée par Iza, 2026-08-26
+
+### Comment elle a été trouvée
+
+Iza a retourné l'image **180°** — haut-bas *et* gauche-droite d'un coup, « comme
+le télescope de Newton » — et a lu des chiffres dans les contours de la fleur :
+7, 6, 9, 5, 2, 3, puis un 4. Elle a précisé d'elle-même que le **jaune était à la
+fois le 6 et le 9**, c'est-à-dire une seule marque lue dans les deux sens — ce qui
+est la signature confirmée de Palencar (miroirs, retournements, Terminal Tower à
+l'envers dans les arbres de Cleveland).
+
+### Ce qui est mesuré, et qui tient
+
+Un **disque clair cerné d'un anneau d'encre fermé**, niché dans l'échancrure
+entre deux pétales, à l'intérieur du double contour extérieur de la fleur.
+
+| | |
+|---|---|
+| Boîte, pixels pleine image | **x 1068–1099, y 2705–2740** |
+| Taille | **31 × 35 px** |
+| Aire | 823 px |
+| **Rondeur** (aire / disque circonscrit) | **0,86** |
+| Rondeur de tout le reste dans la même zone | 0,07 · 0,12 · 0,31 · 0,32 · 0,40 |
+
+**C'est le seul disque du coin.** Toutes les autres plages claires du secteur sont
+des coins de pétales allongés. Une calendula n'a pas de bille sertie entre ses
+pétales : cet élément est **délibéré**, il a son propre trait de contour, et la
+fiche 12treasures ne le mentionne nulle part. C'est nouveau au dossier.
+
+### La règle d'Iza — et ce qu'elle coûte à sa propre lecture
+
+Iza a posé le critère structurel qui manquait : **les chiffres d'un nombre sont
+collés, de même hauteur, sur une même ligne de base.** Le « 1881 » de Cleveland
+est exactement ça — quatre chiffres dans un cartouche, aucun trait partagé, lus
+d'un seul balayage.
+
+Appliqué ici, ce critère **coupe dans sa propre lecture**, et c'est elle qui l'a
+vu venir :
+
+- Comptage de l'encre dans la zone (seuillage local, traits ≥ 120 px) :
+  **5 traits indépendants**, tailles 5288 · 2932 · 602 · 311 · 198 px.
+- Les glyphes 4, 7 et 6/9 étaient tous les trois lus dans ces mêmes 5 traits, en
+  se les **partageant**. Or les deux gros traits ont déjà une fonction : l'un
+  sépare deux pétales, l'autre ferme la fleur.
+- Le 5 et le 2 sont d'une **tout autre échelle** — ils occupent un pétale entier,
+  loin du groupe. Un nombre n'a pas des chiffres de tailles différentes.
+- Autour du disque, **aucun second glyphe à son échelle**. Ce qui le touche, c'est
+  le séparateur de pétale (4 à 5 fois plus haut) et le contour extérieur.
+
+**Conclusion : ce n'est pas une chaîne de chiffres.** C'est **une marque isolée**.
+Les 4, 7, 5, 2 et 3 sont les traits du dessin faisant leur travail normal.
+
+**Mais la marque, elle, reste.** Elle change de catégorie, elle ne disparaît pas :
+d'un chiffre présumé elle devient un **objet non expliqué**, et dans ce
+casse-tête les objets portent du sens sans être des chiffres (la fleur donne le
+mois, la base de lampadaire donne le lieu).
+
+### Piste directe : l'opale — et le problème des deux cabochons
+
+L'image 9 a une pierre attitrée dans la Litanie : **l'opale**. « *The Opal of the
+Lowland Gnomes: A cloud of shining, shifting smoke.* » Une opale se peint comme un
+cabochon rond et clair — exactement la forme trouvée.
+
+**Sauf qu'il y en a deux dans la peinture** :
+
+1. le disque de la calendula, mesuré ci-dessus ;
+2. un **cabochon rond serti au centre du galon à damier du bonnet**, visible au
+   zoom (zone `900,960 → 2080,1220`). **Non mesuré** : il est serti *dans* le
+   damier, donc le seuillage le fusionne avec les cases claires voisines. Il
+   faudrait une segmentation par contour, pas par seuil. **[à faire]**
+
+**Question ouverte, jamais posée en 44 ans : lequel des deux est l'opale, et à
+quoi sert l'autre ?**
+
+### Tests en attente
+
+1. **Le test du 0, du 1 et du 8.** Le jeu de glyphes lu par Iza ne contient ni 0,
+   ni 1, ni 8. C'est un test **négatif**, donc difficile à truquer : la pareidolie
+   trouve tout. Si la fleur livre des 0, des 1 et des 8 aussi facilement que des 4
+   et des 7, la méthode ramasse du bruit et il ne reste que le disque. Si elle
+   refuse d'en donner, le 4 et le 7 remontent d'un cran.
+   *Note* : cette absence exclut mécaniquement Cleveland (41/81), Chicago (41/87),
+   Boston (42/71) et New York (40/73), et laisse passer Montréal (45/73).
+2. **Mesurer le cabochon du bonnet** par segmentation de contour.
+
+## Comptages — ce qui a été mesuré et ce qui a échoué
+
+### Pétales de la calendula : 12–13, instable
+
+Méthode : échantillonnage de l'intensité sur des cercles concentriques centrés
+sur le cœur de la fleur (**1147, 2567**), comptage des minima sombres qui séparent
+les pétales.
+
+| rayon | 45 | 55 | 65 | 75 | 85 | 95 | 105 | 115 | 125 | 135 | 145 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| creux | 11 | 12 | 13 | 12 | 15 | 17 | 15 | 11 | 13 | 12 | 12 |
+
+Ça tourne autour de 12–13 **sans jamais se stabiliser** ; les grands rayons
+montent parce qu'ils attrapent le feston du contour extérieur. **Donc non : on ne
+peut pas conclure à 13 pétales**, et l'envie de le faire vient uniquement du fait
+que 13 tomberait bien pour le gaélique (voir ci-dessous). C'est exactement la
+faute reprochée au « 73 » des cheveux.
+
+### Damiers : comptage automatique ÉCHOUÉ
+
+La labellisation par composantes connexes fusionne les cases — la plus grosse
+« aire » sort à 52 671 px, c'est-à-dire toute la zone éclairée collée ensemble.
+Les totaux sautent de 5 à 28 selon le seuil. **Ces chiffres ne valent rien et ne
+doivent pas être cités.** Bonne méthode à faire : trouver le pas de la grille par
+transformée de Fourier, puis compter les cellules dans la zone éclairée. **[à faire]**
+
+### Hypothèse gaélique : rien trouvé
+
+Le gaélique écossais est vigésimal :
+`45 = còig air dhà fhichead` = 5 + (2 × 20) ; `73 = trì deug air trì fichead`
+= 13 + (3 × 20). L'hypothèse ne demande donc pas « trouve un 13 », elle demande
+**« trouve des groupes de vingt »**. Aucun groupe de vingt n'a été trouvé nulle
+part dans l'image à ce jour. Piste **non réfutée mais non appuyée**.
+
+Candidat restant, non mesuré : si chaque manchette fait exactement **5 × 4 = 20
+cases**, les deux ensemble donnent 40 = *dà fhichead*, « deux vingtaines », le 40
+de 45. Dépend du comptage de damier ci-dessus, qui reste à faire proprement.
+
+## Note de méthode — seuillage
+
+Deux échecs à ne pas répéter :
+
+1. **Autocontrast direct sur le scan** : amplifie les rosettes de la trame
+   d'imprimerie au lieu du dessin. Flouter (r ≈ 1,8 px) *avant* d'étirer.
+2. **Seuil global par percentile sur une grande boîte** : si la boîte ramasse
+   beaucoup de fond noir, le percentile glisse dans le fond et l'encre des zones
+   claires est lessivée — le disque de la calendula disparaît carrément. Utiliser
+   un **seuillage local** : `encre = image − flou(image, r=14) < −9`. C'est ce
+   qui a produit la meilleure image de preuve du dossier.
+
 ## Écosse ou Pays-Bas — l'argument (inchangé)
 
 **Pour l'Écosse :** galon en damier (*diced band*) du bonnet militaire écossais ;
