@@ -71,6 +71,64 @@ To dig out.
 Le bloc central (lignes 8–13) donne **CABBOT** — ou, décalé d'un cran, **ABBOT**,
 soit **sir John Abbott**, maire de Montréal et premier ministre du Canada.
 
+## Les indices japonais — la seule parole qui approche celle de l'auteur
+
+Édition japonaise, pages 239-240, section 第5の詩. Preiss y désigne **sept
+mots-clés** : ligne 1 *Lane*, 2 *Two twenty two*, 3 *arc of lights*, 4 *Weight
+and roots*, 6 *granite walls*, 9 *wingless bird*, 14 *white stone closest*.
+**« Citadel in the night » n'en fait pas partie**, ni « together saved the
+site », ni « wind swept halls ».
+
+Trois lignes seulement reçoivent un commentaire :
+
+- **Ligne 1, *Lane*** — « Comme nom commun ça voudrait dire *sentier* ou *petit
+  chemin*, mais le Lane employé ici est un **nom propre**, à ce qu'on nous dit.
+  Un nom propre, c'est un nom — alors le nom de quoi ? Une montagne (山) ? Une
+  rivière (河) ? Une ville, une rue (街) ? Ou bien alors……… ? » La tournure
+  だそうです indique que l'éditeur tenait ça **de l'équipe de Preiss**.
+- **Ligne 4, *Weight and roots*** — « il vaut mieux se représenter un **bâtiment,
+  une construction** » (建築物). Pas un chantier : un édifice.
+- **Ligne 9, *wingless bird*** — métaphore, comme *iron horse* = moto. Et « ce
+  wingless bird, on peut le voir facilement au Japon aussi ».
+
+## La règle des ethnies
+
+Le livre est un hommage aux immigrants ; **chaque ville est choisie pour son rôle
+dans l'immigration d'un groupe donné**. Vérifié sur les trois casques trouvés :
+
+| Ville | Nation | Où le casque était |
+|---|---|---|
+| Cleveland | Grèce | **Jardin culturel grec** |
+| Boston | Italie | parc Langone, **North End italien** — l'acrostiche du vers dit littéralement « ITALIAN FENWAY » |
+| Chicago | **Irlande** | Grant Park |
+
+C'est cette règle qui pèse le plus lourd contre l'étiquette « Pays-Bas » :
+Montréal n'a pas de communauté néerlandaise fondatrice.
+
+## Comment Palencar cache les choses — ses déclarations publiques
+
+Source : page « John Jude Palencar Hints/Confirmations » du wiki, qui compile ses
+interventions. **Il n'a jamais rien dit sur le tableau de Montréal.**
+
+- Il a utilisé de **vrais modèles vivants** pour les figures (son frère a posé
+  pour le Centaure de Cleveland). Mais à Boston, « la figure qui tient la pierre
+  vient d'un tableau ». Les deux se produisent.
+- **Les lieux sont cachés en contours** : les quais du North End dans les cheveux
+  de la femme ; la Terminal Tower **à l'envers** dans les arbres de Cleveland ;
+  un contour de l'Ohio avec les autoroutes.
+- **Des rébus** : `L + cloche = Liberty` (Liberty Bell → avenue Liberty) ;
+  `oiseau + bulle = Boston Pops`.
+- Interrogé sur les trucs — miroirs, pliage à la *Mad Magazine*, lunettes 3D — il
+  a répondu **« oui, et c'est tout ce que je dirai »**, puis a évoqué la
+  distorsion anamorphique et le décalage de champ chromatique.
+- « Parfois on dirait qu'il faut tourner à gauche au lieu de tourner à droite. »
+- Les tableaux n'ont pas de vrais titres ; il en a surnommé quelques-uns.
+
+**Note d'orientation** : puisque Palencar retourne et met en miroir, l'objection
+« une boucle orientée comme un 6 ne peut pas être un 9 » ne tient pas. Ce qui
+reste vrai, c'est que ses vrais chiffres se lisent **d'un coup d'œil**, sans
+qu'on ait à assembler une boucle, une queue et un décompte de pétales.
+
 ## Ancrage géographique (consensus communautaire)
 
 - **Golden Square Mile**, **Maison George-Stephen** (Le Mount Stephen).
@@ -222,6 +280,59 @@ Reste ouvert, par ordre de valeur :
    groupes de vingt objets identiques plus cinq. Porte de sortie secondaire.
 4. **La vidéo Palencar** : https://youtu.be/taEKPdeFvzU — source de presque
    toutes ses confirmations publiques. Il n'a **jamais rien dit** sur Montréal.
+
+## Le dossier du square Dorchester
+
+Le Montréal écossais commence là : la tournée officielle de la Société
+St. Andrew's a **37 arrêts**, et les **quatre premiers** sont le monument de la
+guerre des Boers, le monument à Robert Burns, l'hôtel Windsor et le monument à
+sir John A. Macdonald. L'arrêt 23 est la **maison George-Stephen, 1440 Drummond**.
+
+- **Monument à Robert Burns** — dévoilé le **18 octobre 1930** (octobre !), socle
+  en **granit rose**, à l'**entrée ouest** du square. Donné par l'**Association
+  franco-écossaise de Montréal**, sculpteur George Anderson Lawson. Réplique de
+  l'original d'Ayr.
+- **Monument à sir John A. Macdonald** (né à Glasgow) — 6 juin 1895. Socle **et
+  baldaquin en granit**. Le baldaquin est un toit de pierre **ouvert aux quatre
+  vents** → « wind swept halls ». Voûte à caissons sur **12 colonnes**
+  corinthiennes groupées par trois → « at twelve paces » ? Au sommet, une figure
+  allégorique dressée comme une flèche → « citadel in the night » ?
+- **Monument des Boers / Strathcona's Horse** — socle en **granit gris**.
+  Strathcona = **Donald Smith**, Écossais, cousin de George Stephen.
+- Le square était le **cimetière catholique Saint-Antoine de 1799 à 1854** ;
+  **~50 000 dépouilles y sont toujours**, et des croix latines sont incrustées
+  dans les allées → « white stone closest » ?
+- Planté de **grands arbres souvent centenaires** → « the only standing member of
+  a forest » ?
+
+**Réserve** : « citadel in the night » et « wind swept halls » ne font **pas**
+partie des sept mots-clés désignés par Preiss. Les accrocher au baldaquin
+Macdonald, c'est bâtir sur du décor.
+
+## Ce qui résiste — les deux premières lignes
+
+**« Lane »**, nom propre selon l'équipe de Preiss. Cherché et **non trouvé** :
+
+- **Banque de noms de lieux du Québec** (131 463 toponymes officiels, rues
+  incluses) : 13 « Lane » au Québec, **aucun sur l'île de Montréal**. Tout est
+  dans Lanaudière, la Mauricie, l'Outaouais, la Côte-Nord.
+- **Tournée Scottish Montreal**, 37 arrêts : aucun Lane, aucune adresse au 222.
+- **Carte de la Ville de Montréal, 1978** (7142 × 5339, centre-ville lu rue par
+  rue de l'avenue des Pins au canal Lachine) : **aucun Lane**. Noms écossais du
+  secteur : Argyle, Selkirk, Redpath Row.
+
+**« Two twenty two »** — rien. À noter : dans le **vers 4, résolu**, tous les
+nombres sont des **instructions de comptage sur place** (« la dixième pierre en
+partant de la droite », « la neuvième rangée à partir du haut », « sept marches
+à monter »). Donc 222 est peut-être un compte, pas une adresse.
+
+**L'autobus 222** — aujourd'hui STM 222 Senneville, exo 222 Deux-Montagnes. La
+CTCUM a hérité des circuits de l'Ouest-de-l'Île en **octobre 1980**, d'où vient
+la série 200. **Son existence en 1982 n'est pas démontrée** — il faudrait une
+carte du réseau de 1982 (la BAnQ en a numérisé). Cette piste a quand même mené à
+**Senneville**, où **sir John Abbott** — premier ministre du Canada, maire de
+Montréal, acrostiche **ABBOT** du vers 5 — avait son domaine **Boisbriant**
+(300 acres, vers 1865, racheté en 1898 par Edward Clouston).
 
 ## TODO(human) — verdict d'Iza sur les deux objets
 
