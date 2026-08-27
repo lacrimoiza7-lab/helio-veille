@@ -469,6 +469,179 @@ carte du réseau de 1982 (la BAnQ en a numérisé). Cette piste a quand même me
 Montréal, acrostiche **ABBOT** du vers 5 — avait son domaine **Boisbriant**
 (300 acres, vers 1865, racheté en 1898 par Edward Clouston).
 
+## Séance du 2026-08-27 — les mains, et le vers replacé sur le square
+
+Point de départ : Iza voit un **signe** dans les mains jointes, de forme
+apparentée à l'écusson du bas, et y lit des chiffres — 3, 4, puis 5.
+
+### Les mains — ce qui est mesuré
+
+Zone `1290,2540 → 2010,3360` du scan pleine qualité.
+
+- Les doigts sont **entrelacés**, pas joints paume contre paume : la main droite
+  s'intercale entre ceux de la gauche. Geste délibéré.
+- Un petit objet clair est pincé au sommet, contre le pouce, vers `1670,2620`.
+
+**Les chiffres 3/4/5 : non soutenus.** Seuillage aux percentiles 70 / 82 / 92.
+Ce qui survit aux trois seuils, ce sont des **doigts** : les trois taches
+empilées à droite, lues comme un « 3 », sont trois phalanges éclairées — elles
+restent séparées parce que ce sont trois objets. Aucune forme fermée ne persiste
+là où il faudrait la boucle d'un 4 ou le ventre d'un 5.
+
+**Le parallèle de forme mains ↔ écusson : non concluant.** Silhouettes
+normalisées à la même hauteur (l'écusson inversé, car il est encre sombre sur
+fond pâle alors que les mains sont lumière sur fond noir). Le recouvrement n'est
+pas frappant. Seul point réellement commun : un appendice qui monte vers le
+haut-gauche dans les deux.
+
+**Le « point » du panneau au sautoir : réfuté.** J'avais cru voir une marque
+ronde isolée dans le quadrant nord du X. Mesure sur `1830,2200 → 2085,2450`
+(seuillage local, taches claires) : 715 taches brutes, **rondeur maximale 0,38**,
+et le « point » appartient à une plage claire de 51 × 75 px. Rien à comparer au
+disque de la calendula (0,86). C'était une lecture, pas un objet.
+
+**Ce qui reste vrai** : le sautoir n'est **pas** symétrique — une branche
+épaisse, l'autre fine, croisement décentré, quatre quadrants inégaux. Un drapeau
+écossais ne se peint pas comme ça.
+
+### Correction au TODO(human) — l'objet du panneau du bas
+
+Noté jusqu'ici comme « objet rond au sol ». **Faux.** À 8× (`1900,2555 →
+2040,2685`) il porte une **anse arquée** sur le dessus et repose sur des
+**pieds** : un contenant qu'on transporte et qu'on dépose — coffre, seau,
+chaudron. La figure nue ne se penche pas vers un caillou. Le verdict d'Iza reste
+demandé, mais sur la bonne forme cette fois.
+
+### Le vers 5 — trois lignes qui se posent sans forcer
+
+Le dossier accrochait `wind swept halls` et `citadel in the night` au baldaquin
+Macdonald, avec la réserve juste : c'était bâtir sur du décor. Il y a mieux, et
+c'est vérifié.
+
+| Ligne | Objet | Vérification |
+|---|---|---|
+| `Of granite walls` | **Édifice Sun Life**, square Dorchester | **granit de Stanstead**, carrière de Beebe ; ~60 000 pièces, deux blocs de 17 t, 900 de plus de 5 t |
+| `Wind swept halls` | **Windsor Hall**, hôtel Windsor, même square | salle de bal renommée *Windsor Hall* après la démolition de la salle voisine en 1906 ; plus Peacock Alley |
+| `Citadel in the night` | le coffre du Sun Life | l'or et les titres britanniques, **trois étages sous terre**, garde GRC 24 h sur 24, à partir du 1er juillet 1940 |
+| `Together saved the site` | deux candidats réels | gare Windsor, démolition annoncée par le CP en **1970**, projet abandonné ; hôtel Windsor, incendie de **1957**, annexe nord sauvée intacte |
+
+Le Sun Life prend **deux lignes consécutives** avec un seul objet, sans torsion.
+C'est le premier passage du vers où aucune ligne ne casse.
+
+**Ce qui ne colle pas, et qu'on ne tord pas :** la gare Windsor est en
+**calcaire gris** de Montréal, pas en granit — Bruce Price, romanesque
+richardsonien, bâtie par le CP 1887-1889, « composante intégrante de Dominion
+Square ». Et le socle de Burns est donné **grès rose clair** par Wikipédia
+anglais contre **granit rose** par la Ville : les deux sources se contredisent,
+et ni l'une ni l'autre ne donne de pierre **blanche** pour `White stone closest`.
+
+### Le plan du square est un Union Jack
+
+Allées **diagonales des quatre coins vers le centre**, plus des allées coupant
+chaque côté : motif d'Union Jack vu d'en haut. Le **centre** est marqué par le
+monument des Boers (1907), qui fait face au **nord**, vers la croix du
+Mont-Royal. Burns « forme le point ouest **de la croix** ».
+
+L'Union Jack contient le **sautoir** de saint André — celui du panneau du haut de
+l'image 9. **[hypothèse]** le panneau ne serait pas un drapeau mais un **plan**.
+Non testable au scan : rien d'isolé n'y est mesurable (voir ci-dessus).
+
+### Piège de datation — le square a changé sous nos pieds
+
+Le square a été **refait par Claude Cormier en 2010** : dalles, allées, mobilier.
+Preiss écrit en **1982**. `At twelve paces / From the west side` se mesure sur le
+square de 1982, pas sur celui de Google Street View. Les lignes descriptives
+tiennent — le granit et le coffre n'ont pas bougé depuis 1940 — mais **tout
+arpentage fait sur l'état actuel est suspect**. À faire : plans et photos
+d'archives du square avant Cormier.
+
+### L'orme — l'idée d'Iza, et ce qu'elle règle
+
+Iza part de « Dollard des **Ormeaux** » → ormeau = jeune **orme**.
+
+**Les chiffres.** Montréal comptait **50 000 ormes** au début des années 1970 ;
+**90 % abattus entre 1970 et 1980** par la maladie hollandaise de l'orme. Les
+35 000 ormes qui couvraient Sherbrooke et Saint-Hubert : réduits à **500**.
+Preiss écrit en 1982, l'année d'après. `Beneath the only standing member / Of a
+forest` était alors de l'**actualité**, pas une image.
+
+**Ce que ça règle.** La section « Écosse ou Pays-Bas » butait sur une
+contradiction : thème écossais partout dans l'image, **Pays-Bas** dans la
+litanie. **[hypothèse, d'Iza]** si le « Pays-Bas » de la litanie désigne la
+***Dutch* elm disease** et non un peuple, la contradiction tombe — la nation
+pointe l'**arbre**. C'est la mécanique de rébus confirmée de Palencar
+(`L + cloche = Liberty`). **Dépend entièrement de la litanie de l'image 9, qui
+est toujours marquée [à vérifier sur le livre].**
+
+**Ce que ça ne donne pas.** Aucun « unique orme debout » documenté au square
+Dorchester ni dans le Golden Square Mile. Sur les 500 survivants : parc Jarry,
+Jardin botanique, parc du Boisé des Pères, ruelles et abords de voies ferrées.
+Un survivant est signalé au coin **McTavish / Docteur-Penfield**. Le seul
+candidat aux mots justes est l'orme remarquable du **Mont-Royal**, près du
+stationnement de la maison Smith — ~120 ans, 110 cm de diamètre, le plus gros du
+parc, et la fiche de la Ville dit qu'il « se détache clairement dans le ciel et
+apparaît comme une curiosité ou un élément insolite **au travers de la masse
+boisée homogène** ». Mais son statut est documenté **aujourd'hui** : en 1982
+l'arbre avait 80 ans et n'était remarquable pour personne. **Écarté comme piste
+principale.**
+
+### La mesure qui recentre
+
+Le « leg-eater » porte aussi le nom de **Garibaldi Candelabra** — même objet,
+deux noms, pas un déplacement d'ancre. Statue de quatre pouces, introuvable
+ailleurs aux États-Unis ou au Canada, localisée **devant le Mount Stephen Club**.
+Evan Hoovler signale « plusieurs **carrés de terre avec des arbres** » juste là.
+
+Coordonnées vérifiées : maison George-Stephen, 1430-1440 Drummond,
+**45,499025 N / −73,575761 O** ; square Dorchester, **45,499618 N /
+−73,570969 O**.
+
+    Stephen → square Dorchester : 379 m, azimut 80°
+      écart nord-sud  :  66 m
+      écart est-ouest : 374 m
+      en pas de 0,75 m : 506 pas
+
+Les deux sont donc **pratiquement sur le même parallèle**, le square plein est à
+379 m. Ce n'est **pas** le même pâté de maisons — Hoovler dit que le leg-eater
+identifie *un* pâté. 506 pas, pas douze. Mais c'est cinq minutes à pied : la
+piste Dorchester n'est ni tuée ni prouvée. Le parc La Fontaine (~3 km) et le
+Mont-Royal, eux, sont hors de portée d'un même vers.
+
+**[hypothèse]** le vers se lit en deux temps : les lignes descriptives situent le
+quartier depuis le trajet (granit, halls, citadelle), et l'arpentage final —
+arbre, douze pas, creuser — se fait à l'échelle d'un trottoir, là où l'ancre dure
+et le vocabulaire du vers se touchent : les carrés de terre plantés devant le
+Mount Stephen Club.
+
+Au passage : la maison George-Stephen a été bâtie **1881-1883**. Le « 1881 » a
+donc deux sources superposées — l'incorporation du CP *et* le chantier de la
+maison.
+
+### État de la communauté
+
+Vérifié sur `12treasures.com/q4t/Image 9 Verse 5`, `sites.google.com/view/
+montreal-the-secret` et les fils liés : **ni le Sun Life, ni le Windsor Hall, ni
+la gare Windsor, ni Burns n'apparaissent nulle part** dans leurs lectures du vers
+5. Leurs lieux : île Sainte-Hélène, Stade olympique, parc La Fontaine,
+Mont-Royal, square Dorchester en vrac. Cinq chercheurs, cinq lieux — signe
+qu'aucune contrainte ne mord chez eux.
+
+Une idée à leur prendre : un solveur lit `Of a forest` comme un **nom de
+famille**, pas comme des arbres (« Forest Achille », monument aux morts français,
+parc La Fontaine). La piste vaut aussi pour `member` au sens **architectural** —
+élément d'un ordre, d'où « le seul membre debout d'une forêt [de colonnes] ».
+
+### Reste à faire
+
+1. **Vérifier la litanie de l'image 9 sur le livre** (Pays-Bas ?). Toute la
+   déduction de l'orme en dépend. Iza a le livre.
+2. `Lane / Two twenty two` avec l'ancre plantée sur Drummond : un « 222 »
+   redevient lisible comme adresse.
+3. Plans et photos du square Dorchester **avant 2010**.
+4. Reste des tours précédents : cabochon du bonnet par segmentation de contour ;
+   comptage des damiers par pas de grille en Fourier ; test du 0/1/8 dans la
+   calendula.
+
 ## TODO(human) — verdict d'Iza sur les deux objets
 
 Deux formes sont nettes au scan mais **je ne peux pas les identifier** : la
