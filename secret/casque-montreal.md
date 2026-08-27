@@ -651,6 +651,104 @@ boisée homogène** ». Mais son statut est documenté **aujourd'hui** : en 1982
 l'arbre avait 80 ans et n'était remarquable pour personne. **Écarté comme piste
 principale.**
 
+### Le col est un pignon à redents — et il porte 4 / 5
+
+Trouvé par Iza en retournant le col à 180° : les deux « escaliers » ne descendent
+plus, ils **montent** vers un sommet central. Ce n'est pas un galon brodé
+quelconque, c'est un **pignon à redents**.
+
+- **Écosse** : *crow-stepped gable*, dès le XVIe siècle — château de Muchalls,
+  Monboddo House, Tolbooth de Stonehaven.
+- **Pays-Bas et Flandre** : *trapgevel*, depuis le XIIe siècle à Gand, répandu
+  par la Hanse.
+- Pont documenté entre les deux : les « **Scottish Houses** » de Flandre —
+  Het Lammeken (1539) et De Stuys (1561), maisons de marchands **écossais**,
+  bâties avec des *trapgevels*.
+
+**→ C'est la sortie de la contradiction Écosse / Pays-Bas.** Le pignon à redents
+est le seul élément architectural qui appartient pleinement aux deux cultures :
+littéralement la forme des **Lowlands**, dans les deux sens du mot. Un *Lowland
+Gnome* qui porte un trapgevel-crowstep sur la poitrine ne tranche pas entre les
+deux, il dit qu'ils sont le même monde. **[hypothèse, mais la meilleure à ce
+jour]** — à mettre en regard de la section « Écosse ou Pays-Bas ».
+
+#### Le décompte
+
+Axe de symétrie au creux du V, x = 1530. Deux fenêtres indépendantes, seuils
+p62 / p72 / p82.
+
+| côté | paliers | angle de la pente | résidu max de l'ajustement |
+|---|---|---|---|
+| gauche | **4** | **39,2°** | 3 px |
+| droite | **5** | **49,6°** | 14 px |
+
+    gauche  hauteurs 90, 85, 80      largeurs 110, 110, 90    régulier
+    droite  hauteurs 90, 90, 85, 75  largeurs 100, 50, 70, 80 irrégulier
+
+Coins lus sur une grille en pixels natifs (`col_grille.png`), pas détectés
+automatiquement — **deux tentatives de détection automatique ont donné du
+bruit** (26 « sauts » sur un profil, 715 taches sur un seuillage). Le côté droit
+est le moins fiable : résidu 14 px, et cette largeur de 50 au milieu des
+100 / 70 / 80 est anormale.
+
+**Lu de gauche à droite : 45.** La latitude de Montréal, le nombre que ce dossier
+poursuit depuis le début, et **le premier chiffre de toute la chasse qui sort
+d'un décompte plutôt que d'une lecture de forme**.
+
+#### Les réserves, écrites en toutes lettres
+
+1. **La tautologie n / n+1.** Un escalier à 4 marches a toujours 5 niveaux. Donc
+   « 4 d'un côté, 5 avec le sommet » décrit n'importe quel escalier à quatre
+   marches. Le 45 ne sortirait pas du motif mais de la façon de compter.
+   **Contre-argument (Iza)** : le *n* a été choisi. Six marches auraient donné
+   67 et personne n'y verrait rien.
+2. **Ce qui échappe à la tautologie, c'est l'asymétrie.** Les deux côtés
+   diffèrent par le **nombre de paliers** (4 vs 5), par le **pas** (régulier vs
+   irrégulier) et par l'**angle** (écart de **10,4°**). Trois mesures, dont deux
+   indépendantes du comptage. Un ornement brodé en miroir ne fait pas ça, et un
+   vrai pignon à redents est un mur **symétrique** — les deux rampants y ont
+   forcément le même nombre de redents. **Si l'asymétrie est délibérée, elle est
+   le message.**
+3. **L'angle n'est pas 45°.** Ni 39,2 ni 49,6. Leur moyenne tombe à 44,4°, et
+   **ce chiffre ne vaut rien** : deux nombres qui encadrent une cible ont
+   toujours une moyenne proche de cette cible. 20° et 70° donneraient aussi 45.
+4. **Le comptage est visuel.** Concordant sur deux cadrages et trois seuils pour
+   le côté droit ; le côté gauche n'a été vérifié que sur deux cadrages.
+
+#### Ce qui est définitivement mort : compter les cases du damier
+
+Le test gaélique demandait deux vingtaines (*còig air dhà fhichead* = 5 + 2×20).
+Impossible : la calendula mange le coin bas-gauche, le panneau au sautoir mange
+la droite, le manteau coupe le bas. **Une partie du damier est occultée par
+construction.** Un décompte caché derrière une fleur n'est pas un décompte — à
+Chicago, les bras du moulin étaient tous visibles. Ce n'est pas un échec de
+méthode, c'est une impossibilité de principe. **Piste fermée.**
+
+En revanche la calendula **n'occulte pas le liseré du pignon** : rendu à
+contraste local (`liseret_gauche.png`), la fleur est en dessous et à gauche, le
+liseré passe au-dessus sans jamais y entrer. Le décompte du côté gauche en sort
+renforcé, pas affaibli.
+
+#### Pignons à redents recensés à Montréal
+
+- **Martlet House**, 1430 rue Peel, 1929 — à un pâté du square Dorchester, et
+  numéro voisin du 1440 Drummond de la maison George-Stephen.
+- **Royal Victoria Hospital**, 687 av. des Pins Ouest, 1893 — baronnial
+  écossais, **offert par George Stephen et Donald Smith**, les deux cousins
+  écossais du CP. Mais à ~1 km du square : encore un indice qui **déplace**.
+- James Harper House, 481 Prince-Arthur Ouest, 1897.
+- Ancien Institut de pathologie, 3801 University, 1923.
+
+**St. George's n'en a pas.** Le même site tague explicitement « Pignon_redents »
+sur la Martlet House et n'en tague aucun sur St. George's — il n'y liste qu'une
+**horloge**. Argument négatif, mais d'une source qui sait repérer ce détail.
+(Contradiction à trancher : Wikipédia raconte que l'architecte a renoncé à
+l'horloge, craignant la colère des voyageurs de la gare Windsor si elle était
+fausse.)
+
+→ Le pignon du col ne représente donc probablement **aucun bâtiment**. C'est une
+**signature culturelle**, au même rang que le tartan et le sautoir.
+
 ### La Litanie des Joyaux — texte vérifié
 
 Recoupée sur deux sources indépendantes. **Douze couplets**, un par casque :
