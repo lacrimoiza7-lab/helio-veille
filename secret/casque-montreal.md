@@ -35,6 +35,26 @@
 - À faire : localiser visuellement le 45 (objet, décompte, forme, rangée, angle ?).
   Le 73 servirait de contrôle : les deux devraient se lire selon la même logique.
 
+## Hypothèse « 45 encodé par la langue » (misty) — [piste chaude]
+
+Le 45 ne serait pas un chiffre arabe dessiné, mais encodé via la langue/thème de l'image 9.
+Ancrages thématiques : nation = **Pays-Bas** + « **Lowland** Gnomes » (litanie) ; Maison
+George-Stephen = magnat **écossais** ; « **the '45** » = soulèvement jacobite de 1745.
+
+Formes exactes de 45 (vérifiées) :
+- **Néerlandais** : **vijfenveertig** (*vijf* 5 + *en* + *veertig* 40) — unité AVANT dizaine.
+- **Gaélique écossais, décimal** : **ceathrad 's a còig** (40 + 5).
+- **Gaélique écossais, vigésimal (base 20)** : **còig air dhà fhichead** = 5 + (20 × 2) ;
+  *dà fhichead* = « deux vingtaines » = 40.
+- Romain : XLV.
+
+Ce que ça implique à chercher dans l'image 9 :
+- **[à tester]** un décompte en base 20 : **deux groupes de 20** objets identiques + **5**
+  (pétales de calendula, étoiles, points, tuiles, fenêtres…).
+- **[à tester]** du **texte néerlandais** ou un ordre 5-puis-40.
+- **[à tester]** un **emblème écossais/jacobite** (chardon, tartan, cocarde blanche, Stuart)
+  comme pointeur vers « le 45 ».
+
 ## Vers 5 — texte de référence
 
 - **MANQUANT ici.** Le fragment trouvé en ligne (« Lane / Two twenty two … ») s'est
