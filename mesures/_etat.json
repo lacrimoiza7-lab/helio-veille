@@ -1,54 +1,51 @@
 {
-  "collecte_le": "2026-08-29T02:40:02+00:00",
+  "collecte_le": "2026-08-29T10:43:04+00:00",
   "sources": {
     "vent": {
-      "ok": true,
-      "recus": 1313,
-      "nouveaux": 398,
-      "fenetre_h": 23.9,
-      "dernier": "2026-08-29T02:34:00+00:00"
+      "ok": false,
+      "erreur": "<urlopen error [Errno 104] Connection reset by peer>"
     },
     "mag": {
       "ok": true,
-      "recus": 1433,
-      "nouveaux": 408,
+      "recus": 1431,
+      "nouveaux": 477,
       "fenetre_h": 23.9,
-      "dernier": "2026-08-29T02:34:00+00:00"
+      "dernier": "2026-08-29T10:36:00+00:00"
     },
     "kp": {
       "ok": true,
       "recus": 358,
       "nouveaux": 358,
       "fenetre_h": 6.0,
-      "dernier": "2026-08-29T02:37:00+00:00"
+      "dernier": "2026-08-29T10:40:00+00:00"
     },
     "rayons_x": {
       "ok": true,
       "recus": 358,
       "nouveaux": 358,
       "fenetre_h": 6.0,
-      "dernier": "2026-08-29T02:36:00+00:00"
+      "dernier": "2026-08-29T10:39:00+00:00"
     },
     "f107": {
       "ok": true,
       "recus": 123,
-      "nouveaux": 2,
+      "nouveaux": 0,
       "fenetre_h": 965.0,
       "dernier": "2026-08-28T22:00:00+00:00"
     },
     "seismes": {
       "ok": true,
-      "recus": 299,
-      "nouveaux": 147,
-      "fenetre_h": 23.9,
-      "dernier": "2026-08-29T02:32:53.584000+00:00"
+      "recus": 276,
+      "nouveaux": 80,
+      "fenetre_h": 23.4,
+      "dernier": "2026-08-29T10:10:33.170000+00:00"
     },
     "aurore": {
       "ok": true,
       "recus": 1,
       "nouveaux": 1,
       "fenetre_h": 0.0,
-      "dernier": "2026-08-29T02:29:00+00:00"
+      "dernier": "2026-08-29T10:36:00+00:00"
     }
   },
   "purges": 0
