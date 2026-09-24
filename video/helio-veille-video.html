@@ -40,6 +40,9 @@
   .actif .fenetre { animation: pousse 1s forwards; }
   @keyframes pousse { to { transform: scaleX(1) } }
   .compteur { font-size: 12vmin; font-weight: 800; color: var(--vert); font-variant-numeric: tabular-nums; }
+  #depart { position: absolute; inset: 0; z-index: 5; display: flex; align-items: center; justify-content: center;
+    background: #0b1026ee; }
+  #depart button { font-size: 3.5vmin; padding: 2vmin 4vmin; background: var(--soleil); color: var(--nuit); border: 0; font-weight: 700; }
   #barre { position: absolute; left: 0; bottom: 0; height: .6vmin; background: var(--soleil); width: 0; }
   #ctrl { position: absolute; right: 2vmin; bottom: 2vmin; display: flex; gap: 1vmin; opacity: .25; transition: opacity .3s; }
   #ctrl:hover { opacity: 1; }
@@ -52,14 +55,14 @@
   <div class="etoiles"></div>
 
   <!-- 1. Titre -->
-  <section class="plan" data-duree="6">
+  <section class="plan" data-duree="6" data-voix="Voici hélio-veille : ma station météo spatiale qui ne dort jamais.">
     <svg viewBox="0 0 200 120"><circle class="soleil" cx="100" cy="60" r="34"/></svg>
     <h1>helio-veille</h1>
     <p>Ma station météo spatiale qui ne dort jamais</p>
   </section>
 
   <!-- 2. Le problème -->
-  <section class="plan" data-duree="8">
+  <section class="plan" data-duree="8" data-voix="Ma station Hélio-Watch enregistre le vent solaire, le champ magnétique, les aurores et les séismes. Mais seulement quand mon ordinateur est allumé. Dès qu'il s'éteint, l'historique a des trous.">
     <h2>Le problème</h2>
     <svg viewBox="0 0 400 140">
       <circle class="soleil" cx="50" cy="70" r="30"/>
@@ -73,13 +76,13 @@
   </section>
 
   <!-- 3. La demande -->
-  <section class="plan" data-duree="6">
+  <section class="plan" data-duree="6" data-voix="J'ai donc demandé à Claude : que la collecte continue toute seule, même quand mon ordinateur dort.">
     <h2>Ma demande à Claude</h2>
     <p>« Que la collecte continue toute seule,<br>même quand mon ordinateur dort. »</p>
   </section>
 
   <!-- 4. La solution : le cloud -->
-  <section class="plan" data-duree="9">
+  <section class="plan" data-duree="9" data-voix="La solution : un robot gratuit de GitHub, dans le cloud. Toutes les quatre heures, il lance le script de collecte, qui va chercher les mesures officielles de la NOAA et de l'USGS.">
     <h2>La solution : un robot dans le cloud</h2>
     <svg viewBox="0 0 400 140">
       <path d="M120 100 a30 30 0 0 1 10-58 a40 40 0 0 1 75-10 a32 32 0 0 1 55 20 a26 26 0 0 1-5 48z"
@@ -92,7 +95,7 @@
   </section>
 
   <!-- 5. Décisions -->
-  <section class="plan" data-duree="10">
+  <section class="plan" data-duree="10" data-voix="Nos décisions : la collecte se fait dans le cloud. Aucune intelligence artificielle ne touche aux mesures. La station spatiale internationale est exclue, car un point toutes les quatre heures ne fait pas une trajectoire. Et la synthèse rédigée par l'IA est rangée à part.">
     <h2>Nos décisions</h2>
     <ul>
       <li>☁️ Collecte dans le cloud, pas sur mon PC</li>
@@ -103,7 +106,7 @@
   </section>
 
   <!-- 6. L'astuce des fenêtres -->
-  <section class="plan" data-duree="10">
+  <section class="plan" data-duree="10" data-voix="L'astuce, ce sont les fenêtres. Chaque source rend les six à vingt-quatre dernières heures. Les passages se chevauchent : on garde une mesure par minute, et un passage raté ne coûte rien.">
     <h2>L'astuce des fenêtres</h2>
     <svg viewBox="0 0 420 150">
       <line x1="10" y1="135" x2="410" y2="135" stroke="var(--doux)" stroke-width="2"/>
@@ -120,7 +123,7 @@
   </section>
 
   <!-- 7. Ce qui a été produit -->
-  <section class="plan" data-duree="9">
+  <section class="plan" data-duree="9" data-voix="Claude a produit le script de collecte, la tâche planifiée, le dossier des mesures, et un guide qui explique tout.">
     <h2>Ce que Claude a produit</h2>
     <ul>
       <li>🐍 <b>collecte.py</b> : le script de collecte</li>
@@ -131,7 +134,7 @@
   </section>
 
   <!-- 8. Résultat -->
-  <section class="plan" data-duree="9">
+  <section class="plan" data-duree="9" data-voix="Résultat : plus de mille trois cents mesures de vent solaire à chaque passage, six fois par jour. Mon ordinateur peut dormir : le Soleil reste surveillé.">
     <h2>Le résultat</h2>
     <div class="compteur" id="compteur">0</div>
     <p>mesures de vent solaire reçues au dernier passage</p>
@@ -139,6 +142,7 @@
   </section>
 
   <div id="barre"></div>
+  <div id="depart"><button id="lancer">▶ Lancer la vidéo (avec le son)</button></div>
   <div id="ctrl">
     <button id="pause">⏸ Pause</button>
     <button id="rejouer">↺ Rejouer</button>
@@ -150,12 +154,62 @@
   const plans = [...document.querySelectorAll('.plan')];
   const durees = plans.map(p => +p.dataset.duree);
   const total = durees.reduce((a, b) => a + b, 0);
-  let t = 0, enPause = false, courant = -1, dernier = performance.now();
+  let t = 0, enPause = true, courant = -1, dernier = performance.now();
+
+  // --- Voix off : synthèse vocale du navigateur (aucun fichier audio) ---
+  let voixFr = null, phrasesRestantes = 0, attente = 0;
+  function choisirVoix() {
+    const v = speechSynthesis.getVoices().filter(v => v.lang.startsWith('fr'));
+    voixFr = v.find(v => /Google|Natural|Online/.test(v.name)) || v[0] || null;
+  }
+  choisirVoix();
+  speechSynthesis.onvoiceschanged = choisirVoix;
+
+  function parler(texte) {
+    speechSynthesis.cancel();
+    // Découpage en phrases : Chrome coupe parfois les textes longs.
+    const phrases = texte.split(/(?<=[.:])\s+/);
+    phrasesRestantes = phrases.length;
+    attente = 0;
+    for (const ph of phrases) {
+      const u = new SpeechSynthesisUtterance(ph);
+      u.lang = 'fr-FR'; if (voixFr) u.voice = voixFr; u.rate = 1;
+      u.onend = u.onerror = () => { phrasesRestantes = Math.max(0, phrasesRestantes - 1); };
+      speechSynthesis.speak(u);
+    }
+  }
+
+  // --- Musique : nappe d'accords générée en direct (Web Audio) ---
+  let ctx = null, volume = null, prochainAccord = 0, accord = 0;
+  const accords = [[220, 261.6, 329.6], [174.6, 220, 261.6], [196, 261.6, 329.6], [196, 246.9, 293.7]]; // la m, fa, do, sol
+  function demarrerMusique() {
+    ctx = new (window.AudioContext || window.webkitAudioContext)();
+    volume = ctx.createGain(); volume.gain.value = 0.07;
+    const filtre = ctx.createBiquadFilter(); filtre.type = 'lowpass'; filtre.frequency.value = 900;
+    volume.connect(filtre).connect(ctx.destination);
+    prochainAccord = ctx.currentTime + 0.1;
+    setInterval(planifier, 1000); planifier();
+  }
+  function planifier() {
+    while (prochainAccord < ctx.currentTime + 6) {
+      for (const f of accords[accord % 4]) {
+        const o = ctx.createOscillator(), g = ctx.createGain();
+        o.type = 'triangle'; o.frequency.value = f;
+        g.gain.setValueAtTime(0, prochainAccord);
+        g.gain.linearRampToValueAtTime(0.3, prochainAccord + 1.5);
+        g.gain.linearRampToValueAtTime(0, prochainAccord + 4.5);
+        o.connect(g).connect(volume); o.start(prochainAccord); o.stop(prochainAccord + 4.6);
+      }
+      accord++; prochainAccord += 4;
+    }
+  }
+  function regler(v) { if (volume) volume.gain.setTargetAtTime(v, ctx.currentTime, 0.4); }
 
   function montrer(i) {
     if (i === courant) return;
     plans.forEach((p, k) => p.classList.toggle('actif', k === i));
     courant = i;
+    parler(plans[i].dataset.voix);
     if (plans[i].querySelector('#compteur')) compter(1393);
   }
 
@@ -169,20 +223,38 @@
   }
 
   function boucle(now) {
-    if (!enPause) t = Math.min(t + (now - dernier) / 1000, total);
+    const dt = (now - dernier) / 1000;
     dernier = now;
-    let cumul = 0, i = 0;
-    while (i < durees.length - 1 && t >= cumul + durees[i]) cumul += durees[i++];
-    montrer(i);
+    if (!enPause) {
+      t = Math.min(t + dt, total);
+      let cumul = 0, i = 0;
+      while (i < durees.length - 1 && t >= cumul + durees[i]) cumul += durees[i++];
+      // La scène attend la fin de la voix (20 s maximum, au cas où la voix se bloque).
+      const fin = cumul + durees[i];
+      if (courant === i && phrasesRestantes > 0 && t > fin - 0.05 && attente < 20) {
+        attente += dt; t = fin - 0.05;
+      }
+      montrer(i);
+      regler(t >= total && phrasesRestantes === 0 ? 0 : phrasesRestantes > 0 ? 0.035 : 0.07);
+    }
     document.getElementById('barre').style.width = (t / total * 100) + '%';
     requestAnimationFrame(boucle);
   }
 
+  document.getElementById('lancer').onclick = () => {
+    document.getElementById('depart').remove();
+    demarrerMusique();
+    enPause = false;
+  };
   document.getElementById('pause').onclick = e => {
+    if (!ctx) return;
     enPause = !enPause;
     e.target.textContent = enPause ? '▶ Lecture' : '⏸ Pause';
+    if (enPause) { speechSynthesis.pause(); ctx.suspend(); } else { speechSynthesis.resume(); ctx.resume(); }
   };
-  document.getElementById('rejouer').onclick = () => { t = 0; courant = -1; };
+  document.getElementById('rejouer').onclick = () => {
+    speechSynthesis.cancel(); phrasesRestantes = 0; t = 0; courant = -1;
+  };
   document.getElementById('plein').onclick = () => document.documentElement.requestFullscreen?.();
   requestAnimationFrame(boucle);
 </script>
