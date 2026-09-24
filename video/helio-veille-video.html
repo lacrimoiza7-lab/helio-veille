@@ -159,14 +159,18 @@
   // --- Voix off : synthèse vocale du navigateur (aucun fichier audio) ---
   let voixFr = null, phrasesRestantes = 0, attente = 0;
   function choisirVoix() {
-    const v = speechSynthesis.getVoices().filter(v => v.lang.startsWith('fr'));
+    const v = synth.getVoices().filter(v => v.lang.startsWith('fr'));
     voixFr = v.find(v => /Google|Natural|Online/.test(v.name)) || v[0] || null;
   }
-  choisirVoix();
-  speechSynthesis.onvoiceschanged = choisirVoix;
+  // Certains navigateurs (applis mobiles, cadres sécurisés) n'ont pas de synthèse vocale :
+  // la vidéo doit alors tourner quand même, sans voix.
+  const synth = window.speechSynthesis || null;
+  try { if (synth) { choisirVoix(); synth.onvoiceschanged = choisirVoix; } } catch (e) {}
 
   function parler(texte) {
-    speechSynthesis.cancel();
+    phrasesRestantes = 0;
+    if (!synth) return;
+    try { synth.cancel(); } catch (e) { return; }
     // Découpage en phrases : Chrome coupe parfois les textes longs.
     const phrases = texte.split(/(?<=[.:])\s+/);
     phrasesRestantes = phrases.length;
@@ -175,7 +179,7 @@
       const u = new SpeechSynthesisUtterance(ph);
       u.lang = 'fr-FR'; if (voixFr) u.voice = voixFr; u.rate = 1;
       u.onend = u.onerror = () => { phrasesRestantes = Math.max(0, phrasesRestantes - 1); };
-      speechSynthesis.speak(u);
+      try { synth.speak(u); } catch (e) { phrasesRestantes = 0; }
     }
   }
 
@@ -241,19 +245,22 @@
     requestAnimationFrame(boucle);
   }
 
-  document.getElementById('lancer').onclick = () => {
+  const lancer = () => {
+    if (!document.getElementById('depart')) return;
     document.getElementById('depart').remove();
-    demarrerMusique();
     enPause = false;
+    try { demarrerMusique(); } catch (e) { ctx = null; }
   };
+  const btn = document.getElementById('lancer');
+  btn.addEventListener('click', lancer);
+  btn.addEventListener('touchend', e => { e.preventDefault(); lancer(); });
   document.getElementById('pause').onclick = e => {
-    if (!ctx) return;
     enPause = !enPause;
     e.target.textContent = enPause ? '▶ Lecture' : '⏸ Pause';
-    if (enPause) { speechSynthesis.pause(); ctx.suspend(); } else { speechSynthesis.resume(); ctx.resume(); }
+    try { if (enPause) { synth?.pause(); ctx?.suspend(); } else { synth?.resume(); ctx?.resume(); } } catch (e) {}
   };
   document.getElementById('rejouer').onclick = () => {
-    speechSynthesis.cancel(); phrasesRestantes = 0; t = 0; courant = -1;
+    try { synth?.cancel(); } catch (e) {} phrasesRestantes = 0; t = 0; courant = -1;
   };
   document.getElementById('plein').onclick = () => document.documentElement.requestFullscreen?.();
   requestAnimationFrame(boucle);
