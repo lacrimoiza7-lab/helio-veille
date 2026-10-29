@@ -1,54 +1,54 @@
 {
-  "collecte_le": "2026-10-29T14:54:38+00:00",
+  "collecte_le": "2026-10-29T20:49:29+00:00",
   "sources": {
     "vent": {
       "ok": true,
-      "recus": 1010,
-      "nouveaux": 457,
+      "recus": 933,
+      "nouveaux": 180,
       "fenetre_h": 23.9,
-      "dernier": "2026-10-29T14:47:00+00:00"
+      "dernier": "2026-10-29T20:44:00+00:00"
     },
     "mag": {
       "ok": true,
-      "recus": 1246,
-      "nouveaux": 558,
+      "recus": 1185,
+      "nouveaux": 248,
       "fenetre_h": 23.9,
-      "dernier": "2026-10-29T14:47:00+00:00"
+      "dernier": "2026-10-29T20:45:00+00:00"
     },
     "kp": {
       "ok": true,
       "recus": 358,
-      "nouveaux": 358,
+      "nouveaux": 354,
       "fenetre_h": 6.0,
-      "dernier": "2026-10-29T14:51:00+00:00"
+      "dernier": "2026-10-29T20:45:00+00:00"
     },
     "rayons_x": {
       "ok": true,
-      "recus": 358,
-      "nouveaux": 358,
+      "recus": 357,
+      "nouveaux": 354,
       "fenetre_h": 6.0,
-      "dernier": "2026-10-29T14:51:00+00:00"
+      "dernier": "2026-10-29T20:46:00+00:00"
     },
     "f107": {
       "ok": true,
-      "recus": 122,
-      "nouveaux": 0,
-      "fenetre_h": 965.0,
-      "dernier": "2026-10-28T22:00:00+00:00"
+      "recus": 124,
+      "nouveaux": 2,
+      "fenetre_h": 987.0,
+      "dernier": "2026-10-29T20:00:00+00:00"
     },
     "seismes": {
       "ok": true,
-      "recus": 191,
-      "nouveaux": 74,
-      "fenetre_h": 23.9,
-      "dernier": "2026-10-29T14:49:54.107000+00:00"
+      "recus": 207,
+      "nouveaux": 88,
+      "fenetre_h": 23.8,
+      "dernier": "2026-10-29T20:44:45.065000+00:00"
     },
     "aurore": {
       "ok": true,
       "recus": 1,
       "nouveaux": 1,
       "fenetre_h": 0.0,
-      "dernier": "2026-10-29T14:44:00+00:00"
+      "dernier": "2026-10-29T20:37:00+00:00"
     }
   },
   "purges": 0
